@@ -3,3 +3,6 @@
 
 # Ignore all uninterested files
 notes.txt
+
+# Ignore target
+target

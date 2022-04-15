@@ -75,3 +75,5 @@ Key tools that we will use in other frameworks, that will all extend this core f
 - [how-to-write-a-good-readme-file](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/)
 - [another-good-readme-example](https://github.com/othneildrew/Best-README-Template)
 - [java-gitignore-file-example](https://gist.github.com/dedunumax/54e82214715e35439227)
+- [manage multiple github accounts](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
+- [multiple git configs for different accounts](https://www.freecodecamp.org/news/how-to-handle-multiple-git-configurations-in-one-machine/)

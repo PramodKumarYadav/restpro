@@ -26,9 +26,3 @@ jobs:
 
     - name: Test with Maven
       run: mvn -DexcludedGroups="flaky | failing" -B package --file pom.xml
-
-    - name: Test Summary
-      uses: test-summary/action@v1
-      with:
-        paths: "target/**/TEST-*.xml"
-      if: always()

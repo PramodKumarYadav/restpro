@@ -7,7 +7,7 @@ for any/and all kind of test automation frameworks (such as API, Browser, Mobile
 ![](https://img.shields.io/github/issues/PramodKumarYadav/zero)
 ![](https://img.shields.io/github/forks/PramodKumarYadav/zero)
 ![](https://img.shields.io/github/stars/PramodKumarYadav/zero)
-![](https://img.shields.io/github/license/PramodKumarYadav/zero)
+![](https://img.shields.io/github/license/PramodKumarYadav/zero?style=flat-square)
 ![](https://img.shields.io/github/languages/count/pramodkumaryadav/zero)
 
 ![](https://img.shields.io/static/v1?label=with-love&message=from-power-tester&color=blue?style=plastic&logo=appveyor)

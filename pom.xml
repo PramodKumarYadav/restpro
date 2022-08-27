@@ -16,6 +16,9 @@
         <maven.surefire.plugin>3.0.0-M5</maven.surefire.plugin>
         <maven.site.plugin>3.11.0</maven.site.plugin>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <lombok.version>1.18.24</lombok.version>
+        <slf4j.version>2.0.0-alpha7</slf4j.version>
+        <log4j.version>2.17.2</log4j.version>
     </properties>
 
     <dependencies>
@@ -25,6 +28,29 @@
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-reload4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-reload4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-console-standalone</artifactId>
+            <version>1.9.0-M1</version>
         </dependency>
     </dependencies>
     <build>
@@ -46,6 +72,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>${maven.site.plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -3,8 +3,17 @@
 Zero is our feature rich, core test automation framework, that can be used as an underlying automation framework
 for any/and all kind of test automation frameworks (such as API, Browser, Mobile App).
 
-## Working principles
+![](https://img.shields.io/github/workflow/status/pramodkumaryadav/zero/Java%20CI%20with%20Maven?logo=GitHub)
+![](https://img.shields.io/github/issues/PramodKumarYadav/zero)
+![](https://img.shields.io/github/forks/PramodKumarYadav/zero)
+![](https://img.shields.io/github/stars/PramodKumarYadav/zero)
+![](https://img.shields.io/github/license/PramodKumarYadav/zero)
+![](https://img.shields.io/github/languages/count/pramodkumaryadav/zero)
 
+![](https://img.shields.io/static/v1?label=with-love&message=from-power-tester&color=blue?style=plastic&logo=appveyor)
+
+
+## Working principles
 - [ ] **Problem solving based learning** (Learn something when a problem comes. This way, you will remember it better).
 - [ ] **First make it work, then make it better** (Specially when working with new tools or tech, don't worry about getting it right the first time. First focus on making it work, then refactor to make it better)  
 
@@ -88,3 +97,8 @@ Key tools that we will use in other frameworks, that will all extend this core f
 - [manage multiple github accounts](https://www.freecodecamp.org/news/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca/)
 - [manage multiple git configs for different accounts](https://www.freecodecamp.org/news/how-to-handle-multiple-git-configurations-in-one-machine/)
 - [logout/login in multiple accounts](https://medium.com/@devesu/how-to-logout-from-git-in-windows-e17c66fe9ca8)
+- [adding ssh key to the ssh agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [adding-a-new-ssh-key-to-your-github-account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+- [auto launching ssh keys for git on windows](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-git-for-windows)
+- [GitCredentialManager](https://github.com/GitCredentialManager)
+- 

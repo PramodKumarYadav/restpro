@@ -4,5 +4,6 @@
         "dockerignore",
         "dockerized",
         "Qube"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

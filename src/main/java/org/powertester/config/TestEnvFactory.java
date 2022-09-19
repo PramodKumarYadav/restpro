@@ -28,17 +28,22 @@ public class TestEnvFactory {
             // Standard config load behavior: https://github.com/lightbend/config#standard-behavior
             config = ConfigFactory.load();
 
-            TestEnv testEnv = config.getEnum(TestEnv.class, "TEST_ENV");
-
             /**
-             * In windows both uppercase and lower case directories are treated the same. However not in linux.
-             * So if we do not convert the repo to lower case, it would work on windows but not in CI- on linux container.
+             * Note: that TEST_ENV value is an enum and an uppercase (ex: DEVELOP). Our repositories (by convention) are
+             * lowercase - kebab-case.  In windows both uppercase and lower case directories are treated the same and
+             * thus the code where we even pass the TestEnv enum name as is (uppercase), it works in windows.
+             * However not in linux. In linux uppercase and lowercase directories are treated different.
+             * So if we do not convert the repo to lower case, it would work on windows but not in CI on linux container.
+             * Another Note: Do not change the repo name to upper case to solve this problem. That would be a
+             * anti-pattern and would create new problems for you.
              */
+            TestEnv testEnv = config.getEnum(TestEnv.class, "TEST_ENV");
             String testEnvName = testEnv.toString().toLowerCase();
+            
             String path = String.format("src/main/resources/%s", testEnvName);
             log.error("path: {}", path);
 
-            File testEnvDir = new File(String.valueOf(path));
+            File testEnvDir = new File(path);
             for (File file : testEnvDir.listFiles()) {
                 String resourceBaseName = String.format("%s/%s", testEnvName, file.getName());
                 log.error("resourceBaseName: {}", resourceBaseName);

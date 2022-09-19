@@ -4,8 +4,6 @@ import com.typesafe.config.ConfigFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Slf4j
 public class TestEnvFactory {
@@ -32,14 +30,20 @@ public class TestEnvFactory {
 
             TestEnv testEnv = config.getEnum(TestEnv.class, "TEST_ENV");
 
+            /**
+             * In windows both uppercase and lower case directories are treated the same. However not in linux.
+             * So if we do not convert the repo to lower case, it would work on windows but not in CI- on linux container.
+             */
             String testEnvName = testEnv.toString().toLowerCase();
             String path = String.format("src/main/resources/%s", testEnvName);
-            log.info("path: {}", path);
+            log.error("path: {}", path);
+
             File testEnvDir = new File(String.valueOf(path));
             for (File file : testEnvDir.listFiles()) {
-                String envFilePath = String.format("%s/%s", testEnvName, file.getName());
-                log.info("envFilePath: {}", envFilePath);
-                Config childConfig = ConfigFactory.load(envFilePath);
+                String resourceBaseName = String.format("%s/%s", testEnvName, file.getName());
+                log.error("resourceBaseName: {}", resourceBaseName);
+
+                Config childConfig = ConfigFactory.load(resourceBaseName);
                 config = config.withFallback(childConfig);
             }
 

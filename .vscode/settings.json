@@ -3,6 +3,7 @@
         "Appium",
         "dockerignore",
         "dockerized",
+        "powertester",
         "Qube"
     ],
     "java.configuration.updateBuildConfiguration": "automatic"

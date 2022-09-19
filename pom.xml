@@ -19,6 +19,7 @@
         <lombok.version>1.18.24</lombok.version>
         <slf4j.version>2.0.0-alpha7</slf4j.version>
         <log4j.version>2.17.2</log4j.version>
+        <typesafe.version>1.4.2</typesafe.version>
     </properties>
 
     <dependencies>
@@ -51,6 +52,12 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-console-standalone</artifactId>
             <version>1.9.0-M1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.typesafe/config -->
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>${typesafe.version}</version>
         </dependency>
     </dependencies>
     <build>

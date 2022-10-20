@@ -1,8 +1,6 @@
-name: Alert parent repository on push
+name: Alert test repository on push to main
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
   
   workflow_dispatch:

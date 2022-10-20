@@ -9,4 +9,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.ref }}
-      - run: echo ${{ github.event.client_payload.github }}
+      - run: >-
+          echo ${{ github.event.client_payload.github.actor }}
+          echo ${{ github.event.client_payload.github.repository }}

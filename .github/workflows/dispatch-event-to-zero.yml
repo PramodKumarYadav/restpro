@@ -15,6 +15,6 @@ jobs:
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_TO_TRIGGER_EVENTS }}
           repository: PramodKumarYadav/zero
-          event-type: deployment-completed
+          event-type: deployment-completed-event
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
    

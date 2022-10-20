@@ -1,4 +1,4 @@
-name: Alert test repository on push to main
+name: Publish event on deployment completion
 on:
   push:
     branches: [ main ]

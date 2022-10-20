@@ -8,13 +8,16 @@ on:
 jobs:
   publish-event-on-deployment-completion-to-zero:
     name: Publish event on deployment completion to `ZERO`
+    strategy:
+      matrix:
+        repos: ['PramodKumarYadav/zero', 'PramodKumarYadav/happium']
     runs-on: ubuntu-latest
     steps:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_TO_TRIGGER_EVENTS }}
-          repository: PramodKumarYadav/happium
+          repository: ${{ matrix.repos }}
           event-type: deployment-completed-event
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
    

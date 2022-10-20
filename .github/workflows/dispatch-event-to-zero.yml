@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  dispatch-to-zero:
-    name: Dispatch to `ZERO`
+  publish-event-to-zero:
+    name: Publish event on deployment completion to `ZERO`
     runs-on: ubuntu-latest
     steps:
       - name: Repository Dispatch

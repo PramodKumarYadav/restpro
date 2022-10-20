@@ -1,4 +1,4 @@
-name: Publish event on deployment completion
+name: publish-event-on-deployment-completion-to-zero
 on:
   push:
     branches: [ main ]
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish-event-to-zero:
+  publish-event-on-deployment-completion-to-zero:
     name: Publish event on deployment completion to `ZERO`
     runs-on: ubuntu-latest
     steps:

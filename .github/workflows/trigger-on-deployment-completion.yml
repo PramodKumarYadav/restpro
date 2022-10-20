@@ -10,5 +10,6 @@ jobs:
         with:
           ref: ${{ github.event.client_payload.ref }}
       - run: >-
-          echo ${{ toJson(github) }}
+          echo ${{ github.event.client_payload.github.workflow }}
+          echo ${{ github.event.client_payload.github.event_name }}
           echo ${{ github.event.client_payload.github.repository }}

@@ -12,7 +12,7 @@ jobs:
     name: Publish event on deployment completion to `ZERO`
     strategy:
       matrix:
-        repos: ['PramodKumarYadav/zero', 'PramodKumarYadav/happium', 'PramodKumarYadav/donotexist']
+        repos: ['PramodKumarYadav/zero', 'PramodKumarYadav/happium', 'PramodKumarYadav/pigeon']
     runs-on: ubuntu-latest
     steps:
       - name: Repository Dispatch

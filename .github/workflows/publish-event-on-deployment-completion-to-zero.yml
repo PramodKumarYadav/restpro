@@ -14,7 +14,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN_TO_TRIGGER_EVENTS }}
-          repository: PramodKumarYadav/zero
+          repository: PramodKumarYadav/happium
           event-type: deployment-completed-event
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
    

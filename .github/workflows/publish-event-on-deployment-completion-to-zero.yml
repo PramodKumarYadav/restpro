@@ -21,5 +21,5 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN_TO_TRIGGER_EVENTS }}
           repository: ${{ matrix.repos }}
           event-type: deployment-completed-event
-          client-payload: '{"github": $GITHUB_CONTEXT}'
+          client-payload: '{"github": ${{ GITHUB_CONTEXT}}}'
    

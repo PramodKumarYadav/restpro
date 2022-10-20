@@ -1,4 +1,4 @@
-name: Repository Dispatch
+name: deployment-completed-event-recevied-to-trigger-tests
 on:
   repository_dispatch:
     types: [deployment-completed]

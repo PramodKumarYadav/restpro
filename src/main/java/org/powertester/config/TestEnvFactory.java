@@ -4,7 +4,7 @@ import com.typesafe.config.ConfigFactory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.Objects;
 
 @Slf4j
 public class TestEnvFactory {
@@ -50,7 +50,7 @@ public class TestEnvFactory {
             log.error("path: {}", path);
 
             File testEnvDir = new File(path);
-            for (File file : testEnvDir.listFiles()) {
+            for (File file : Objects.requireNonNull(testEnvDir.listFiles())) {
                 String resourceBaseName = String.format("%s/%s", testEnvName, file.getName());
                 log.error("resourceBaseName: {}", resourceBaseName);
 

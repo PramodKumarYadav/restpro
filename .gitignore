@@ -6,3 +6,6 @@ notes.txt
 
 # Ignore target
 target
+
+# Ignore git crypt key
+git-crypt-key-zero

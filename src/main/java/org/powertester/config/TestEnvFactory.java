@@ -47,12 +47,12 @@ public class TestEnvFactory {
     private Config getAllConfigFromFilesInTheResourcePath(String testEnvName) {
         try {
             String path = String.format("src/main/resources/%s", testEnvName);
-            log.error("path: {}", path);
+            log.info("path: {}", path);
 
             File testEnvDir = new File(path);
             for (File file : Objects.requireNonNull(testEnvDir.listFiles())) {
                 String resourceBaseName = String.format("%s/%s", testEnvName, file.getName());
-                log.error("resourceBaseName: {}", resourceBaseName);
+                log.info("resourceBaseName: {}", resourceBaseName);
 
                 Config childConfig = ConfigFactory.load(resourceBaseName);
                 config = config.withFallback(childConfig);

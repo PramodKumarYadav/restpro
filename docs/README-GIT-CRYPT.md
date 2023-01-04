@@ -34,7 +34,7 @@ or download it from a central password manager tool (recommended) - such as `1pa
 3. Then run (only one time) below command to see the decrypted files.
    - `git-crypt unlock git-crypt-key-zero`
 
-## [One time activity] - for decrypting files in CI
+## [One time activity] - for decrypting secret files in CI
 
 In the next video, we will see how we can decrypt our secret files in CI,so that our
 secrets can be used in the project and our tests can run green again.

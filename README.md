@@ -3,17 +3,17 @@
 Zero is our feature rich, core test automation framework, that can be used as an underlying automation framework
 for any/and all kind of test automation frameworks (such as API, Browser, Mobile App).
 
-![](https://img.shields.io/github/workflow/status/pramodkumaryadav/zero/Java%20CI%20with%20Maven?logo=GitHub)
-![](https://img.shields.io/github/issues/PramodKumarYadav/zero)
-![](https://img.shields.io/github/forks/PramodKumarYadav/zero)
-![](https://img.shields.io/github/stars/PramodKumarYadav/zero)
-![](https://img.shields.io/github/license/PramodKumarYadav/zero?style=flat-square)
-![](https://img.shields.io/github/languages/count/pramodkumaryadav/zero)
+![build status](https://img.shields.io/github/actions/workflow/status/pramodkumaryadav/zero/test-the-tester.yml?logo=GitHub)
+![open issues](https://img.shields.io/github/issues/PramodKumarYadav/zero)
+![forks](https://img.shields.io/github/forks/PramodKumarYadav/zero)
+![stars](https://img.shields.io/github/stars/PramodKumarYadav/zero)
+![license](https://img.shields.io/github/license/PramodKumarYadav/zero?style=flat-square)
+![languages](https://img.shields.io/github/languages/count/pramodkumaryadav/zero)
 
-![](https://img.shields.io/static/v1?label=with-love&message=from-power-tester&color=blue?style=plastic&logo=appveyor)
-
+![info](https://img.shields.io/static/v1?label=with-love&message=from-power-tester&color=blue?style=plastic&logo=appveyor)
 
 ## Working principles
+
 - [ ] **Problem solving based learning** (Learn something when a problem comes. This way, you will remember it better).
 - [ ] **First make it work, then make it better** (Specially when working with new tools or tech, don't worry about getting it right the first time. First focus on making it work, then refactor to make it better)  
 
@@ -68,6 +68,7 @@ Key tools to be used in this core framework are:
 - [x] **Junit 5** (for assertions)
 - [x] **Slf4J/Log4J** (for logging interface and as a logging library)
 - [x] **Typesafe** (for application configuration for multiple test environments)
+- [x] **Git crypt** (for managing secrets)
 - [ ] **Surefire** (for xml reports in CI)
 - [ ] **Surefire Site plugin** (for html reports in CI)  
 - [x] **Github** (for version control)
@@ -79,7 +80,9 @@ Key tools to be used in this core framework are:
 - [ ] **Powershell or bash Script** (for automating building test environment)
 - [ ] **SonarQube/SonarLint** (for keeping your code clean and safe)
 - [x] **Badges** (for a quick view on your project meta and build status)
+
 Key tools that we will use in other frameworks, that will all extend this core framework are:
+
 - [ ] **RestAssured**  (library for Rest API automation)
 - [ ] **Selenium**  (library for Browser automation)
 - [ ] **Appium**  (library for Mobile ios/android automation)
@@ -101,4 +104,3 @@ Key tools that we will use in other frameworks, that will all extend this core f
 - [adding-a-new-ssh-key-to-your-github-account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 - [auto launching ssh keys for git on windows](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-git-for-windows)
 - [GitCredentialManager](https://github.com/GitCredentialManager)
-- 

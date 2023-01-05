@@ -9,6 +9,7 @@ import org.powertester.config.TestEnvFactory;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
@@ -21,7 +22,7 @@ public class TestSandbox {
                 () -> assertEquals("DEVELOP", CONFIG.getString("TEST_ENV"), "TEST_ENV"),
                 () -> assertEquals("/employee/create", CONFIG.getString("CREATE_EMPLOYEE_ENDPOINT"), "CREATE_EMPLOYEE_ENDPOINT"),
                 () -> assertEquals("develop-admin-user", CONFIG.getString("ADMIN_NAME"), "ADMIN_NAME"),
-                () -> assertEquals(false, CONFIG.getBoolean("TOGGLE"), "TOGGLE"),
+                () -> assertFalse(CONFIG.getBoolean("TOGGLE"), "TOGGLE"),
                 () -> assertEquals(10, CONFIG.getInt("NR_OF_USERS"), "NR_OF_USERS"),
                 () -> assertEquals(123.456, CONFIG.getDouble("PRICE"), "PRICE"),
                 () -> assertEquals("develop-user", CONFIG.getString("USER_NAME"), "USER_NAME")
@@ -52,3 +53,4 @@ public class TestSandbox {
         }
     }
 }
+

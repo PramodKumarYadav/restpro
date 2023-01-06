@@ -1,0 +1,45 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: run-tests-manually
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags-of-tests-to-include:
+        description: 'Tag of tests to include'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - ''  # -Dgroups="" means execute all test cases
+          - 'smoke'
+          - 'flaky'
+          - 'failing'
+      tags-of-tests-to-exclude:
+        description: 'Tag of tests to exclude'
+        required: false
+        default: 'failing'
+        type: choice
+        options:
+          - ''  # -DexcludedGroups="" means don't exclude any test case
+          - 'smoke'
+          - 'flaky'
+          - 'failing'
+      test-environment:
+        description: 'Test environment'
+        required: false
+        default: 'STAGING'
+        type: choice
+        options:
+          - 'DEVELOP'
+          - 'STAGING'
+
+jobs:
+  call-tests-manually:
+    uses: ./.github/workflows/run-tests-template.yml
+    with:
+      tags-of-tests-to-include: ${{ inputs.tags-of-tests-to-include }}
+      tags-of-tests-to-exclude: ${{ inputs.tags-of-tests-to-exclude }}
+      test-environment: ${{ inputs.test-environment }}
+    secrets: inherit

@@ -10,7 +10,7 @@ on:
     # Github actions work with UTC timezone. To convert to your timezone, use this : https://www.worldtimebuddy.com/utc-to-cet-converter
     - cron:  '8 18 1 * *'  # “At 09:00 on 1st of every month”
     - cron:  '8 18 * * MON'  # “At 09:00 on every Monday.”
-    - cron:  '17 17 * * *'  # “At 09:00 on every Monday.”
+    - cron:  '23 17 * * *'  # “At 09:00 on every Monday.”
 
 jobs:
   call-tests-on-a-schedule:

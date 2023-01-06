@@ -7,6 +7,7 @@ on:
   schedule:
     # * is a special character in YAML so you have to quote this string
     # To set a new schedule use this: https://crontab.guru/
+    # To get the right time for your timezone use : https://www.worldtimebuddy.com/
     - cron:  '41 8 1 * *'  # “At 08:41 on 1st day of every month.”
     - cron:  '51 8 * * MON'  # “At 08:51 on every Monday.”
     - cron:  '00/15 * * * *'  # “At every 15th minute from 0 through 59.”

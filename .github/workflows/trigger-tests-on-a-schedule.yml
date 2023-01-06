@@ -12,8 +12,8 @@ on:
     - cron:  '51 8 * * MON'  # “At 08:51 on every Monday.”
 
 jobs:
-  call-tests-on-a-schedule:
-    uses: ./.github/workflows/run-tests-template.yml
+  run-tests-on-a-schedule:
+    uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
       tags-of-tests-to-include: ""  # -Dgroups="" means execute all test cases
       tags-of-tests-to-exclude: ""  # -DexcludedGroups="" means don't exclude any test case

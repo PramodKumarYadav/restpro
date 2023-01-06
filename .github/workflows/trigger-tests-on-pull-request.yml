@@ -8,8 +8,8 @@ on:
     branches: [ main ]
 
 jobs:
-  call-tests-on-a-pull-request:
-    uses: ./.github/workflows/run-tests-template.yml
+  run-tests-on-a-pull-request:
+    uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
       tags-of-tests-to-include: "smoke"
     secrets: inherit

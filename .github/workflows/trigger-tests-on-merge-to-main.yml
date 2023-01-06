@@ -8,8 +8,8 @@ on:
     branches: [ main ]
 
 jobs:
-  call-tests-on-merge-to-main:
-    uses: ./.github/workflows/run-tests-template.yml
+  run-tests-on-merge-to-main:
+    uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
       tags-of-tests-to-include: ""
     secrets: inherit

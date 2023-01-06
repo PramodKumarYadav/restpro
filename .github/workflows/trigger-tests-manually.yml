@@ -21,7 +21,7 @@ on:
       tags-of-tests-to-exclude:
         description: 'Tag of tests to exclude'
         required: false
-        default: 'failing'
+        default: ''
         type: choice
         options:
           - ''  # -DexcludedGroups="" means don't exclude any test case
@@ -40,8 +40,8 @@ on:
           - 'STAGING'
 
 jobs:
-  call-tests-manually:
-    uses: ./.github/workflows/run-tests-template.yml
+  run-tests-manually:
+    uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
       tags-of-tests-to-include: ${{ inputs.tags-of-tests-to-include }}
       tags-of-tests-to-exclude: ${{ inputs.tags-of-tests-to-exclude }}

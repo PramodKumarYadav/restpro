@@ -1,4 +1,4 @@
-name: reusable-workflow-template-to-run-tests
+name: reusable-workflow-to-run-tests
 
 on:
   workflow_call:
@@ -11,6 +11,7 @@ on:
         required: false
         type: string
         default: "flaky, failing"
+      
       test-environment:
         required: false
         type: string

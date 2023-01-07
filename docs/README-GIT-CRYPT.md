@@ -20,6 +20,13 @@ set up git -crypt in the project repository. Run below commands to git crypt the
 5. Check before committing.
    `git-crypt status`
 6. Ignore the key `git-crypt-key-zero` from version control by adding it to the `.gitignore` file.
+> Ignore git crypt key (in a real production world scenario). 
+> I am not ignoring it here since its an open source project and anyone who wants to clone the project would need this 
+> key to work with. 
+
+> Ideally, if you were working in a company, this key would be preserved in a password manager such 
+> as 1password from where everyone could download this key and decrypt files.
+
 7. Push files to github
 8. Check if files are encrypted on github by clicking on any secrets file in Github and by verifying that
 text is not readable.

@@ -9,3 +9,7 @@ target
 
 # Ignore git crypt key
 git-crypt-key-zero
+
+# Ignore mac file
+.DS_Store
+

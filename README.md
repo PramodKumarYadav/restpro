@@ -3,7 +3,7 @@
 Zero is our feature rich, core test automation framework, that can be used as an underlying automation framework
 for any/and all kind of test automation frameworks (such as API, Browser, Mobile App).
 
-![build status](https://img.shields.io/github/actions/workflow/status/pramodkumaryadav/zero/test-the-tester.yml?logo=GitHub)
+![build status](https://img.shields.io/github/actions/workflow/status/pramodkumaryadav/zero/trigger-tests-on-pull-request.yml?logo=GitHub)
 ![open issues](https://img.shields.io/github/issues/PramodKumarYadav/zero)
 ![forks](https://img.shields.io/github/forks/PramodKumarYadav/zero)
 ![stars](https://img.shields.io/github/stars/PramodKumarYadav/zero)

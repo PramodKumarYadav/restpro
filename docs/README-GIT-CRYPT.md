@@ -43,8 +43,8 @@ or download it from a central password manager tool (recommended) - such as `1pa
 
 ## [One time activity] - for decrypting secret files in CI
 
-In the next video, we will see how we can decrypt our secret files in CI,so that our
-secrets can be used in the project and our tests can run green again.
+FYI only - no further action needed by user. 
+Refer github workflow `reusable-workflow-to-run-tests.yml` to see how this is implemented. 
 
 ## Reference
 

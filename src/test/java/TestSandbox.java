@@ -3,6 +3,7 @@ import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.powertester.annotations.FailingTest;
 import org.powertester.annotations.FlakyTest;
 import org.powertester.annotations.SmokeTest;
@@ -39,6 +40,7 @@ public class TestSandbox {
     }
 
     @Tag("dumdum")
+    @Test
     void assertThatSpecificTestsForAServiceCanBeRun() {
         assertTrue(true, "true is true");
     }

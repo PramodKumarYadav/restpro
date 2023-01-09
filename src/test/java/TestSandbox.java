@@ -2,6 +2,7 @@
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.powertester.annotations.FailingTest;
 import org.powertester.annotations.FlakyTest;
 import org.powertester.annotations.SmokeTest;
@@ -37,6 +38,11 @@ public class TestSandbox {
         assertTrue(true, "true is true");
     }
 
+    @Tag("dumdum")
+    void assertThatSpecificTestsForAServiceCanBeRun() {
+        assertTrue(true, "true is true");
+    }
+
     @FailingTest
     void assertThatADayIsADay() {
         assertEquals("day", "night", "true is true");
@@ -53,4 +59,3 @@ public class TestSandbox {
         }
     }
 }
-

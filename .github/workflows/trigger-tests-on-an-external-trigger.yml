@@ -1,0 +1,17 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: run-tests-on-external-event
+
+on:
+  repository_dispatch:
+    types: [deployment-completed-notification-event]
+
+jobs:
+  run-tests-on-external-event:
+    uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
+    with:
+      tags-of-tests-to-include: ${{ github.event.client_payload.TAG }}  # -Dgroups="" means execute all test cases
+      tags-of-tests-to-exclude: ""  # -DexcludedGroups="" means don't exclude any test case
+      test-environment: ${{ github.event.client_payload.TEST_ENV }}
+    secrets: inherit

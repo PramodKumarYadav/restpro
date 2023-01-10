@@ -4,17 +4,14 @@
 name: trigger-tests-on-a-schedule
 
 on:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    # To set a new schedule use this: https://crontab.guru/
-    # To get the right time for your timezone use : https://www.worldtimebuddy.com/
-    - cron:  '41 8 1 * *'  # “At 08:41 on 1st day of every month.”
-    - cron:  '51 8 * * MON'  # “At 08:51 on every Monday.”
+  repository_dispatch:
+    types: [deployment-completed-notification-event]
 
 jobs:
   trigger-tests-on-a-schedule:
     uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
-      tags-of-tests-to-include: ""  # -Dgroups="" means execute all test cases
+      tags-of-tests-to-include: ${{ github.event.client_payload.TAG }}  # -Dgroups="" means execute all test cases
       tags-of-tests-to-exclude: ""  # -DexcludedGroups="" means don't exclude any test case
+      test-environment: ${{ github.event.client_payload.TEST_ENV }}
     secrets: inherit

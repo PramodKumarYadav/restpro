@@ -39,15 +39,6 @@ public class TestSandbox {
         assertTrue(true, "true is true");
     }
 
-    @Tag("dumdum")
-    @Test
-    void assertThatSpecificTestsForAServiceCanBeRun() {
-        final Config CONFIG = TestEnvFactory.getInstance().getConfig();
-        final String expectedEnv = CONFIG.getString("TEST_ENV");
-        log.info("running only tests for dumdum tests in test env: {}", expectedEnv);
-        assertEquals(expectedEnv, CONFIG.getString("TEST_ENV"), "TEST_ENV");
-    }
-
     @FailingTest
     void assertThatADayIsADay() {
         assertEquals("day", "night", "true is true");

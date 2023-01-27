@@ -2,12 +2,11 @@
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import org.powertester.annotations.FailingTest;
 import org.powertester.annotations.FlakyTest;
 import org.powertester.annotations.SmokeTest;
 import org.powertester.config.TestEnvFactory;
+import setup.TestSetup;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-public class TestSandbox {
+public class TestSandbox extends TestSetup {
     @RepeatedTest(10)
     void assertThatWeCanGetUserConfig() {
         final Config CONFIG = TestEnvFactory.getInstance().getConfig();

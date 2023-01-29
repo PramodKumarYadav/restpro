@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Data
 public class TestRunMetaData {
     private static final String PROJECT = "zero";
-    private static final String TEST_RUN_TIME = LocalDateTime.now().toString();
+    private static final String RUN_TIME = LocalDateTime.now().toString();
     private static final String USER_NAME = System.getProperty("user.name");
 
     /**
@@ -47,7 +47,7 @@ public class TestRunMetaData {
 
     public TestRunMetaData setBody(ExtensionContext context) {
         project = PROJECT;
-        testRun = TEST_RUN_TIME;
+        testRun = RUN_TIME;
 
         testClass = context.getTestClass().orElseThrow().getSimpleName();
         testName = context.getDisplayName();
@@ -68,7 +68,7 @@ public class TestRunMetaData {
             duration = String.valueOf(TimingExtension.getTestExecutionTimeThread());
         }
 
-        log.info("duration {}}️" , duration);
+        log.info("duration {}" , duration);
     }
 
     private void setTestStatusAndReason(ExtensionContext context) {

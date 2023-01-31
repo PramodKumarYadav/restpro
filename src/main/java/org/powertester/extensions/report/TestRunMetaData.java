@@ -2,11 +2,13 @@ package org.powertester.extensions.report;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.typesafe.config.Config;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.powertester.config.TestEnvFactory;
 import org.powertester.extensions.TimingExtension;
 
 import java.time.LocalDateTime;
@@ -19,7 +21,8 @@ import java.time.LocalDateTime;
 public class TestRunMetaData {
     private static final String PROJECT = "zero";
     private static final String RUN_TIME = LocalDateTime.now().toString();
-    private static final String USER_NAME = System.getProperty("user.name");
+
+    private static final String TRIGGERED_BY = getTriggeredBy();
 
     /**
      * Note: Jackson would ignore all above static variables when creating a JSON object to push to Elastic;
@@ -56,7 +59,7 @@ public class TestRunMetaData {
 
         setTestStatusAndReason(context);
 
-        triggeredBy = USER_NAME;
+        triggeredBy = TRIGGERED_BY;
 
         return this;
     }
@@ -80,5 +83,14 @@ public class TestRunMetaData {
             status = "✅";
             reason = "🌻";
         }
+    }
+
+    private static String getTriggeredBy(){
+       Config config = TestEnvFactory.getInstance().getConfig();
+       if(config.getString("TRIGGERED_BY").isEmpty()){
+           return System.getProperty("user.name");
+       }else{
+           return config.getString("TRIGGERED_BY");
+       }
     }
 }

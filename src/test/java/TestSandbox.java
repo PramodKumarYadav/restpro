@@ -1,6 +1,7 @@
 
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.RepeatedTest;
 import org.powertester.annotations.FailingTest;
 import org.powertester.annotations.FlakyTest;

@@ -12,6 +12,7 @@ import org.powertester.config.TestEnvFactory;
 import org.powertester.extensions.TimingExtension;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Slf4j
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,7 +21,8 @@ import java.time.LocalDateTime;
 @Data
 public class TestRunMetaData {
     private static final String PROJECT = "zero";
-    private static final String RUN_TIME = LocalDateTime.now().toString();
+
+    private static final String RUN_TIME = LocalDateTime.now(ZoneId.of("UTC")).toString();
 
     private static final String TRIGGERED_BY = getTriggeredBy();
 

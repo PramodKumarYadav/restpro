@@ -12,4 +12,5 @@ jobs:
     uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
       tags-of-tests-to-include: "smoke"
+      run-name: "${{ github.event.pull_request.title }}"
     secrets: inherit

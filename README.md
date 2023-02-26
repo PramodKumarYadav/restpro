@@ -15,14 +15,16 @@ for any/and all kind of test automation frameworks (such as API, Browser, Mobile
 ### Requiring (one time) manual setup by user
 
 1. [JDK 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) - as language of choice for writing this test framework.
-2. [Maven 3.8.6+](https://maven.apache.org/) - for project dependency management and running tests in CI. 
+2. [Maven 3.8.6+](https://maven.apache.org/) - for project dependency management and running tests in CI.
 3. [git-crypt](https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih) - to encrypt/decrypt secrets. [One time set up instructions here](docs/README-GIT-CRYPT.md).
-
+4. [install pre-commit hook](https://pre-commit.com/)
+    1. Install pre-commit
+    2. run pre-commit install to set up the git hook scripts (if you add new hooks, would need to run this again)
 
 ## Working principles
 
 - [ ] **Problem solving based learning** (Learn something when a problem comes. This way, you will remember it better).
-- [ ] **First make it work, then make it better** (Specially when working with new tools or tech, don't worry about getting it right the first time. First focus on making it work, then refactor to make it better)  
+- [ ] **First make it work, then make it better** (Specially when working with new tools or tech, don't worry about getting it right the first time. First focus on making it work, then refactor to make it better)
 
 ## Test goals and objectives
 
@@ -30,23 +32,23 @@ A good guideline to test any project is:
 
 >> Test the right things, in the right order, at the right time.
 
-- [ ] **Risk based testing** (Test the right things and avoid testing 3rd party/low risk software).  
+- [ ] **Risk based testing** (Test the right things and avoid testing 3rd party/low risk software).
 - [ ] **Follow test pyramid** (in the right order)
-- [ ] **Fail fast, fail early** (at the right time)  
+- [ ] **Fail fast, fail early** (at the right time)
 - [ ] **Prevent breaking changes from merging** (Run fast and stable API tests as a part of application pull requests).
 - [ ] **If cannot prevent, test immediately on merge** Run slower and flaky Mobile/Browser tests immediately on merge of pull requests on new deployed env.
-- [ ] **Test asap, if cannot test on merge** Use your creative imagination to do exploratory tests, UX testing post merge.  
+- [ ] **Test asap, if cannot test on merge** Use your creative imagination to do exploratory tests, UX testing post merge.
 
 ## Test framework goals and objectives
 
-Some of the key goals and objectives of our test framework are:  
+Some of the key goals and objectives of our test framework are:
 
-- [ ] **Easy to understand** (Separate test intentions from implementation)  
+- [ ] **Easy to understand** (Separate test intentions from implementation)
 - [ ] **Easy to maintain** (Separation of concerns between data, config, code and tests).
 - [ ] **Easy to scale** (Prefer composition over inheritance. Follow SOLID principles).
 - [ ] **Fast execution time** (Create atomic, independent tests that can run in parallel to cut down on execution times).
 - [ ] **Test at right moment** (Have various CI workflows that allow testing as soon as possible).
-- [ ] **Reliable, robust tests** (Create generic classes that have methods that wait for the right state before acting on elements)  
+- [ ] **Reliable, robust tests** (Create generic classes that have methods that wait for the right state before acting on elements)
 - [ ] **Flexible tests that can run on any test env** (Move all env related information to its own config files, so that tests can flexibly run on any test environment)
 
 ## Important files
@@ -54,17 +56,17 @@ Some of the key goals and objectives of our test framework are:
 There are some standard files, there deserves a section of their own. These are:
 
 - [x] **README.md file** (This is where you tell what your project is all about and how others can use it.).
-- [x] **junit-platform.properties file** (This is where you specify your projects execution mode i.e. serial, or any of the available parallel execution modes)  
+- [x] **junit-platform.properties file** (This is where you specify your projects execution mode i.e. serial, or any of the available parallel execution modes)
 - [x] **.log4j properties file**. (This specifies the log level for your project)
 - [x] **application.conf and other conf file**. (This is where we specify common application config and config for each test environment)
-- [x] **.gitignore file**. (This contains everything that you are *not* interested in version controlling.)  
+- [x] **.gitignore file**. (This contains everything that you are *not* interested in version controlling.)
 - [ ] **.gitattributes file**. (This is where you specify attributes of any files that are being version controlled.)
-- [ ] **.editorconfig file**. (This provides a way to have a common formatting rules within your team. In absence of this, your PRs would be a mess to review.)  
-- [x] **pom.xml file**. (This is where you define all your maven project dependencies.)  
+- [ ] **.editorconfig file**. (This provides a way to have a common formatting rules within your team. In absence of this, your PRs would be a mess to review.)
+- [x] **pom.xml file**. (This is where you define all your maven project dependencies.)
 - [x] **LICENSE file**. (This is where you give permission to others to make use of your open source project.)
 - [ ] **Dockerfile**. (This is where you automate your test environment. i.e. all the parts that your project depends on; such as having a machine, JDK, Maven, setting up system environments, any other tools, etc all.)
 - [ ] **.dockerignore file**. (Like gitignore file, here we specify everything that we want to be ignored from passing to docker build context.)
-- [ ] **docker-compose.yml file**. (A convenient way to set up a local instance of your dockerized application on your localhost machine. )  
+- [ ] **docker-compose.yml file**. (A convenient way to set up a local instance of your dockerized application on your localhost machine. )
 
 ## Tool Set
 
@@ -77,10 +79,10 @@ Key tools to be used in this core framework are:
 - [x] **Typesafe** (for application configuration for multiple test environments)
 - [x] **Git crypt** (for managing secrets)
 - [ ] **Surefire** (for xml reports in CI)
-- [ ] **Surefire Site plugin** (for html reports in CI)  
+- [ ] **Surefire Site plugin** (for html reports in CI)
 - [x] **Github** (for version control)
 - [x] **Github actions** (for continuous integration)
-- [ ] **Faker library** (for generating random test data for different locales - germany, france, netherlands, english)  
+- [ ] **Faker library** (for generating random test data for different locales - germany, france, netherlands, english)
 - [x] **Slack integration** (for giving notifications on pull requests)
 - [ ] **Elastic and Kibana** (for test monitoring)
 - [ ] **Docker** (for automating test framework's environment)

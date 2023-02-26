@@ -16,3 +16,5 @@ target
 # Ignore mac file
 .DS_Store
 
+# Ignore .cache files
+.cache

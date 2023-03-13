@@ -17,9 +17,22 @@ for any/and all kind of test automation frameworks (such as API, Browser, Mobile
 1. [JDK 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) - as language of choice for writing this test framework.
 2. [Maven 3.8.6+](https://maven.apache.org/) - for project dependency management and running tests in CI.
 3. [git-crypt](https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih) - to encrypt/decrypt secrets. [One time set up instructions here](docs/README-GIT-CRYPT.md).
-4. [install pre-commit hook](https://pre-commit.com/)
-    1. Install pre-commit
-    2. run pre-commit install to set up the git hook scripts (if you add new hooks, would need to run this again)
+4. [pre-commit](https://pre-commit.com/) - to have code automatically and uniformly formatted (JAVA, JSON, XML, YAML).
+    - To install pre-commit Do below steps (as a one time activity).
+    - Short version
+        - Open terminal
+        - Install [pre-commit](https://pre-commit.com/) (a hooks package manager).
+            - If on mac, install using: `brew install pre-commit`
+            - If on windows, install using pip (python package manager).
+                - Install python and pip first if not intalled already.
+                - Then run `pip install pre-commit`
+        - Check pre-commit version by running: `pre-commit --version`
+        - cd to your project repository.
+        - Run `pre-commit install`
+        - That's it! From now on if you try to push any unformatted code to GitHub, pre-commit hook will both format the code
+          and show the changed file for you to stage and commit.
+    - For longer version:
+        - Read [README-CODE-FORMATTING.md](./README-CODE-FORMATTING.md)
 
 ## Working principles
 

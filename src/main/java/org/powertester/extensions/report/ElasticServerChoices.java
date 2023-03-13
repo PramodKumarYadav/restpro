@@ -5,13 +5,13 @@ public enum ElasticServerChoices {
   ON_LOCALHOST_SECURE("ON_LOCALHOST_SECURE"),
   ON_LOCALHOST_INSECURE("ON_LOCALHOST_INSECURE");
 
-  ElasticServerChoices(String value){
+  ElasticServerChoices(String value) {
     this.value = value;
   }
 
   private String value;
 
-  public String getValue(){
+  public String getValue() {
     return value;
   }
 }

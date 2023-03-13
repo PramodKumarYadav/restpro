@@ -1,0 +1,21 @@
+name: Format Java Code as per Google Java Format program
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # v2 minimum required
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--replace"
+          skip-commit: true
+
+      - name: Print diffs
+        run: |
+          echo "Please read the README.md file and install pre-commit hooks to properly format the files and resolve this error"
+          git --no-pager diff --exit-code

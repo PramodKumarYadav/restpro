@@ -6,5 +6,4 @@ import org.powertester.extensions.TimingExtension;
 
 @ExtendWith(ReportingExtension.class)
 @ExtendWith(TimingExtension.class)
-public class TestSetup {
-}
+public class TestSetup {}

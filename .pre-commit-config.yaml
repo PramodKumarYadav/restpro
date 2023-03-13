@@ -1,0 +1,17 @@
+repos:
+  -   repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.4.0
+      hooks:
+        -   id: check-yaml
+        -   id: check-json
+        -   id: check-xml
+        -   id: mixed-line-ending
+        -   id: pretty-format-json
+        -   id: end-of-file-fixer
+        -   id: trailing-whitespace
+
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: 54f7f7c5cb9501110b928f2a98faa8024142f8d7
+    hooks:
+      - id: pretty-format-java
+        args: [--autofix]

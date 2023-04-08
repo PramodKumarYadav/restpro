@@ -115,6 +115,7 @@ Key tools that we will use in other frameworks, that will all extend this core f
 
 ## References
 
+- [Install HOCON Plugin on intellij to highlight .conf files]
 - [README-wiki](https://en.wikipedia.org/wiki/README)
 - [how-to-write-a-good-readme-file](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/)
 - [another-good-readme-example](https://github.com/othneildrew/Best-README-Template)

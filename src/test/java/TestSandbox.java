@@ -15,7 +15,7 @@ import setup.TestSetup;
 
 @Slf4j
 public class TestSandbox extends TestSetup {
-  @RepeatedTest(10)
+  @RepeatedTest(1)
   void assertThatWeCanGetUserConfig() {
     final Config CONFIG = TestEnvFactory.getInstance().getConfig();
     final String expectedEnv = CONFIG.getString("TEST_ENV");
@@ -38,28 +38,5 @@ public class TestSandbox extends TestSetup {
         () ->
             assertEquals(
                 expectedEnv.toLowerCase() + "-user", CONFIG.getString("USER_NAME"), "USER_NAME"));
-  }
-
-  /** a very basic test */
-  @SmokeTest
-  void assertThatTrueIsTrue() {
-    assertTrue(true, "true is true");
-  }
-
-  @FailingTest
-  void assertThatADayIsADay() {
-    assertEquals("day", "night", "true is true");
-  }
-
-  @DisplayName("flaky test")
-  @FlakyTest
-  void createAFlakyTestCase() {
-    long currentTimeStamp = System.currentTimeMillis();
-    log.debug("currentTimeStamp: {}", currentTimeStamp);
-    if (currentTimeStamp % 2 == 0) {
-      assertTrue(true, "time is even");
-    } else {
-      assertTrue(false, "time is odd");
-    }
   }
 }

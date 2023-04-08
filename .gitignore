@@ -11,7 +11,7 @@ target
 # I am not ingoring it here since its an open source project and anyone who wants to clone the project would need this
 # key to work with. Ideally, if you were working in a company, this key would be preserved in a password manager such
 # as 1password from where everyone could download and decrypt files.
-# git-crypt-key-zero
+# git-crypt-key-restpro
 
 # Ignore mac file
 .DS_Store

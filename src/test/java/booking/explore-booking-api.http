@@ -1,0 +1,196 @@
+### Create auth token
+# curl -X POST
+#  https://restful-booker.herokuapp.com/auth
+#  -H 'Content-Type: application/json'
+#  -d '{
+#    "username" : "admin",
+#    "password" : "password123"
+#}'
+POST {{host}}/auth
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+
+> {%
+  client.global.set("auth_token", response.body.token);
+  client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+### Get all bookings
+# curl -i https://restful-booker.herokuapp.com/booking
+GET {{host}}/booking
+
+### Create a booking
+# curl -X POST
+#  https://restful-booker.herokuapp.com/booking
+#  -H 'Content-Type: application/json'
+#  -d '{
+#    "firstname" : "Jim",
+#    "lastname" : "Brown",
+#    "totalprice" : 111,
+#    "depositpaid" : true,
+#    "bookingdates" : {
+#        "checkin" : "2018-01-01",
+#        "checkout" : "2019-01-01"
+#    },
+#    "additionalneeds" : "Breakfast"
+#}'
+POST {{host}}/booking
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstname": "Jim",
+  "lastname": "Brown",
+  "totalprice": 111,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2018-01-01",
+    "checkout": "2019-01-01"
+  },
+  "additionalneeds": "Breakfast"
+}
+
+> {%
+  client.global.set("booking_id", response.body.bookingid);
+  client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  var firstname = response.body.booking.firstname;
+  client.log("firstname: " + firstname)
+      client.assert(firstname === "Jim", "Expected booking firstname: Jim, Actual booking firstname : " + firstname);
+});
+%}
+
+### Get a particular booking
+# curl -i https://restful-booker.herokuapp.com/booking/1
+GET {{host}}/booking/{{booking_id}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Update an existing booking
+# curl -X PUT
+#  https://restful-booker.herokuapp.com/booking/1
+#  -H 'Content-Type: application/json'
+#  -H 'Accept: application/json'
+#  -H 'Cookie: token=abc123'
+#  -d '{
+#    "firstname" : "James",
+#    "lastname" : "Brown",
+#    "totalprice" : 111,
+#    "depositpaid" : true,
+#    "bookingdates" : {
+#        "checkin" : "2018-01-01",
+#        "checkout" : "2019-01-01"
+#    },
+#    "additionalneeds" : "Breakfast"
+#}'
+PUT {{host}}/booking/{{booking_id}}
+Accept: application/json
+Cookie: token={{auth_token}}
+Content-Type: application/json
+
+{
+  "firstname": "Pramod",
+  "lastname": "Yadav",
+  "totalprice": 111,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2018-01-01",
+    "checkout": "2019-01-01"
+  },
+  "additionalneeds": "Breakfast"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+### Partial update a booking
+# curl -X PATCH
+#  https://restful-booker.herokuapp.com/booking/1
+#  -H 'Content-Type: application/json'
+#  -H 'Accept: application/json'
+#  -H 'Cookie: token=abc123'
+#  -d '{
+#    "firstname" : "James",
+#    "lastname" : "Brown"
+#}'
+PATCH {{host}}/booking/{{booking_id}}
+Accept: application/json
+Cookie: token={{auth_token}}
+Content-Type: application/json
+
+{
+  "firstname": "Vinod",
+  "lastname": "kumar"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+### Delete booking
+# curl -X DELETE
+#  https://restful-booker.herokuapp.com/booking/1
+#  -H 'Content-Type: application/json'
+#  -H 'Cookie: token=abc123'
+DELETE {{host}}/booking/{{booking_id}}
+Cookie: token={{auth_token}}
+Content-Type: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+    var status = response.status;
+    client.log("response.status: " + status);
+    client.assert(status === 200, "Expected response: 200; Actual response: " + status);
+    });
+%}
+
+### Get a particular booking
+# curl -i https://restful-booker.herokuapp.com/booking/1
+GET {{host}}/booking/{{booking_id}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        var status = response.status;
+        client.log("response.status: " + status);
+        client.assert(status === 404, "Expected response: 404; Actual response: " + status);
+    });
+%}
+
+### health check endpoint
+# curl -i https://restful-booker.herokuapp.com/ping
+GET {{host}}/ping
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@
 Our secret keys are saved in `secrets.*` files and encrypted with [`git-crypt`](https://github.com/AGWA/git-crypt#readme).
 
 > A user who is not added to the project, will not be able to use the secrets from our project and thus this is a mandatory
-step to complete to be able to run the tests.
+> step to complete to be able to run the tests.
 
 ## Install Git-Crypt
 
@@ -63,20 +63,36 @@ text is not readable.
 Now once a user has initialized a project with git crypt
 
 1. other new users can simply ask for the key from the first user
-or download it from a central password manager tool (recommended) - such as `1password` or any other password manager tool.
+   or download it from a central password manager tool (recommended) - such as `1password` or any other password manager
+   tool.
 2. They have to copy/paste this file in their cloned projects root directory.
 3. Then run (only one time) below command to see the decrypted files.
    - `git-crypt unlock git-crypt-key-restpro`
 
 ## Decrypt Project (in CI)
 
-Refer information [here](https://github.com/sliteteam/github-action-git-crypt-unlock), to see how this was done. 
+Refer information [here](https://github.com/sliteteam/github-action-git-crypt-unlock), to see how this was done.
 
-> One time activity, that is already done here: .github/workflows/run-tests-template.yml
+> NOTE: If you are making a copy of this project and pushing it to your own GitHub repository,
+> remember to run the below command from say (gitbash terminal)
 
-FYI only - no further action needed by user. 
+> `git-crypt export-key ./git-crypt-key-restpro && cat ./git-crypt-key-restpro | base64`
+
+> to get the secret and add it to GitHub secret named: GIT_CRYPT_KEY.
+> Since this is a demo project, the key is already present in the root repository and I do not
+> mind exposing this secret for you below. In a real life project, this will not be part of version
+> control.
+
+```commandline
+Pramod Yadav@DESKTOP-GPU5LFR MINGW64 ~/restpro (main)
+$ git-crypt export-key ./git-crypt-key-restpro && cat ./git-crypt-key-restpro | base64
+AEdJVENSWVBUS0VZAAAAAgAAAAAAAAABAAAABAAAAAAAAAADAAAAIODz1YHHA96CZubMzshhXpKh
+SIuNpeEPbQmvIcBT8UTuAAAABQAAAEAfT0bYmgWbxK+RI/mKsJXtCq9Th77lSR0D1G/5WGfspccv
+o/0VHDfAHi88Q6LmCL45TixGqFnLi5XmqzFwBjgdAAAAAA==
+
+```
 
 ## Reference
 
-- [git-crypt official github repo and readme file](https://github.com/AGWA/git-crypt)
+- [git-crypt official GitHub repo and readme file](https://github.com/AGWA/git-crypt)
 - [A great article on this topic by Michael Bogan for Heroku](https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih)

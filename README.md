@@ -55,9 +55,13 @@ Key tools to be used in this core framework are:
 
 ## References
 
-- [Rest-assured](https://rest-assured.io/)
+- <a href="https://rest-assured.io/" target="_blank">Rest-assured</a>
 - [Application under test (restful-booker)](https://restful-booker.herokuapp.com/apidoc/index.html)
 - [Info on HTTP Client](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html)
 - [Exploring-http-syntax](https://www.jetbrains.com/help/idea/exploring-http-syntax.html)
 - [http-response-handling-api-reference](https://www.jetbrains.com/help/idea/http-response-handling-api-reference.html)
-- [Install HOCON Plugin on intellij to highlight .conf files](https://plugins.jetbrains.com/plugin/10481-hocon).
+
+## Plugins
+
+- [HOCON](https://plugins.jetbrains.com/plugin/10481-hocon) - For config and secrets files syntax highlight.
+- [.ignore](https://plugins.jetbrains.com/plugin/7495--ignore) - For (dockerignore, gitignore) files syntax highlight .

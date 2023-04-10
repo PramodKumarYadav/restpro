@@ -15,11 +15,12 @@ Content-Type: application/json
 }
 
 > {%
-  client.global.set("auth_token", response.body.token);
-  client.test("Request executed successfully", function() {
-  client.assert(response.status === 200, "Response status is not 200");
-});
+    client.global.set("auth_token", response.body.token);
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
 %}
+
 ### Get all bookings
 # curl -i https://restful-booker.herokuapp.com/booking
 GET {{host}}/booking
@@ -56,13 +57,13 @@ Accept: application/json
 }
 
 > {%
-  client.global.set("booking_id", response.body.bookingid);
-  client.test("Request executed successfully", function() {
-  client.assert(response.status === 200, "Response status is not 200");
-  var firstname = response.body.booking.firstname;
-  client.log("firstname: " + firstname)
-      client.assert(firstname === "Jim", "Expected booking firstname: Jim, Actual booking firstname : " + firstname);
-});
+    client.global.set("booking_id", response.body.bookingid);
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        var firstname = response.body.booking.firstname;
+        client.log("firstname: " + firstname)
+        client.assert(firstname === "Jim", "Expected booking firstname: Jim, Actual booking firstname : " + firstname);
+    });
 %}
 
 ### Get a particular booking
@@ -71,8 +72,8 @@ GET {{host}}/booking/{{booking_id}}
 Accept: application/json
 
 > {%
-    client.test("Request executed successfully", function() {
-    client.assert(response.status === 200, "Response status is not 200");
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
     });
 %}
 
@@ -111,10 +112,11 @@ Content-Type: application/json
 }
 
 > {%
-    client.test("Request executed successfully", function() {
+    client.test("Request executed successfully", function () {
         client.assert(response.status === 200, "Response status is not 200");
     });
 %}
+
 ### Partial update a booking
 # curl -X PATCH
 #  https://restful-booker.herokuapp.com/booking/1
@@ -136,10 +138,11 @@ Content-Type: application/json
 }
 
 > {%
-    client.test("Request executed successfully", function() {
-    client.assert(response.status === 200, "Response status is not 200");
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
     });
 %}
+
 ### Delete booking
 # curl -X DELETE
 #  https://restful-booker.herokuapp.com/booking/1
@@ -150,10 +153,10 @@ Cookie: token={{auth_token}}
 Content-Type: application/json
 
 > {%
-    client.test("Request executed successfully", function() {
-    var status = response.status;
-    client.log("response.status: " + status);
-    client.assert(status === 200, "Expected response: 200; Actual response: " + status);
+    client.test("Request executed successfully", function () {
+        var status = response.status;
+        client.log("response.status: " + status);
+        client.assert(status === 200, "Expected response: 200; Actual response: " + status);
     });
 %}
 
@@ -163,7 +166,7 @@ GET {{host}}/booking/{{booking_id}}
 Accept: application/json
 
 > {%
-    client.test("Request executed successfully", function() {
+    client.test("Request executed successfully", function () {
         var status = response.status;
         client.log("response.status: " + status);
         client.assert(status === 404, "Expected response: 404; Actual response: " + status);
@@ -175,7 +178,7 @@ Accept: application/json
 GET {{host}}/ping
 
 > {%
-    client.test("Request executed successfully", function() {
+    client.test("Request executed successfully", function () {
         client.assert(response.status === 200, "Response status is not 200");
     });
 %}

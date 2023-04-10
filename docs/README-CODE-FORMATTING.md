@@ -1,8 +1,25 @@
 # Code formatting Setup (one time)
 
-[Back to readme.md](./README.md)
+Reference: https://pre-commit.com/
 
-## To have common a code formatting for all users
+Install pre-commit to have code automatically and uniformly formatted (JAVA, JSON, XML, YAML).
+
+## Short version
+
+To install pre-commit do below steps (as a one time activity).
+- Open terminal
+- Install [pre-commit](https://pre-commit.com/) (a hooks package manager).
+  - If on mac, install using: `brew install pre-commit`
+  - If on windows, install using pip (python package manager).
+    - Install python and pip first if not intalled already.
+    - Then run `pip install pre-commit`
+- Check pre-commit version by running: `pre-commit --version`
+- cd to your project repository.
+- Run `pre-commit install`
+- That's it! From now on if you try to push any unformatted code to GitHub, pre-commit hook will both format the code
+  and show the changed file for you to stage and commit.
+
+## Long version
 
 ### Step 1
 

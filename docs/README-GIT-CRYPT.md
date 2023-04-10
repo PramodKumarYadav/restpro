@@ -7,6 +7,8 @@ step to complete to be able to run the tests.
 
 ## Install Git-Crypt
 
+Reference: https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih 
+
 ### Step1: Verify if you have git crypt installed on your system
 
 - macOS/Linux (run from terminal): `git-crypt --version`

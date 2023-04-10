@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.powertester</groupId>
-    <artifactId>zero</artifactId>
+    <artifactId>restpro</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -24,9 +24,15 @@
         <jackson-databind.version>2.14.1</jackson-databind.version>
         <jakarta.json-api.version>2.0.1</jakarta.json-api.version>
         <javafaker.version>1.0.2</javafaker.version>
+        <rest-assured.version>5.3.0</rest-assured.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.3.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

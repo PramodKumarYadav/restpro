@@ -2,7 +2,7 @@ version: '2.2'
 services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.8
-    container_name: zero-es01
+    container_name: restpro-es01
     environment:
       - node.name=es01
       - cluster.name=es-docker-cluster
@@ -22,7 +22,7 @@ services:
       - elastic
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.8
-    container_name: zero-es02
+    container_name: restpro-es02
     environment:
       - node.name=es02
       - cluster.name=es-docker-cluster
@@ -40,7 +40,7 @@ services:
       - elastic
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.8
-    container_name: zero-es03
+    container_name: restpro-es03
     environment:
       - node.name=es03
       - cluster.name=es-docker-cluster
@@ -59,7 +59,7 @@ services:
 
   kib01:
     image: docker.elastic.co/kibana/kibana:7.17.8
-    container_name: zero-kib01
+    container_name: restpro-kib01
     ports:
       - 5601:5601
     environment:

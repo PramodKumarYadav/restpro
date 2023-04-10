@@ -1,14 +1,13 @@
-# Zero
+# restpro
 
-Zero is our feature rich, core test automation framework, that can be used as an underlying automation framework
-for any/and all kind of test automation frameworks (such as API, Browser, Mobile App).
+Test RestAPIS like a PRO.
 
-![build status](https://img.shields.io/github/actions/workflow/status/pramodkumaryadav/zero/trigger-tests-on-pull-request.yml?logo=GitHub)
-![open issues](https://img.shields.io/github/issues/PramodKumarYadav/zero)
-![forks](https://img.shields.io/github/forks/PramodKumarYadav/zero)
-![stars](https://img.shields.io/github/stars/PramodKumarYadav/zero)
-![license](https://img.shields.io/github/license/PramodKumarYadav/zero?style=flat-square)
-![languages](https://img.shields.io/github/languages/count/pramodkumaryadav/zero)
+![build status](https://img.shields.io/github/actions/workflow/status/pramodkumaryadav/restpro/trigger-tests-on-pull-request.yml?logo=GitHub)
+![open issues](https://img.shields.io/github/issues/PramodKumarYadav/restpro)
+![forks](https://img.shields.io/github/forks/PramodKumarYadav/restpro)
+![stars](https://img.shields.io/github/stars/PramodKumarYadav/restpro)
+![license](https://img.shields.io/github/license/PramodKumarYadav/restpro?style=flat-square)
+![languages](https://img.shields.io/github/languages/count/pramodkumaryadav/restpro)
 
 ![info](https://img.shields.io/static/v1?label=with-love&message=from-power-tester&color=blue?style=plastic&logo=appveyor)
 
@@ -36,7 +35,7 @@ for any/and all kind of test automation frameworks (such as API, Browser, Mobile
 
 ## Working principles
 
-- [ ] **Problem solving based learning** (Learn something when a problem comes. This way, you will remember it better).
+- [ ] **Problem-solving based learning** (Learn something when a problem comes. This way, you will remember it better).
 - [ ] **First make it work, then make it better** (Specially when working with new tools or tech, don't worry about getting it right the first time. First focus on making it work, then refactor to make it better)
 
 ## Test goals and objectives

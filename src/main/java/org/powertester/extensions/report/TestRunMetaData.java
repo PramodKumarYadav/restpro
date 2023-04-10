@@ -20,7 +20,7 @@ import org.powertester.extensions.TimingExtension;
 @NoArgsConstructor
 @Data
 public class TestRunMetaData {
-  private static final String PROJECT = "zero";
+  private static final String PROJECT = "restpro";
   private static final Config CONFIG = TestEnvFactory.getInstance().getConfig();
 
   private static final String RUN_TIME = LocalDateTime.now(ZoneId.of("UTC")).toString();

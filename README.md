@@ -71,4 +71,8 @@ Key tools to be used in this core framework are:
 ## References
 
 - Install HOCON Plugin on intellij to highlight .conf files.
-- 
+- [rest-assured](https://rest-assured.io/)
+- [Application under test (restful-booker)](https://restful-booker.herokuapp.com/apidoc/index.html)
+- [Info on HTTP Client](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html)
+- [Exploring-http-syntax](https://www.jetbrains.com/help/idea/exploring-http-syntax.html)
+- [http-response-handling-api-reference](https://www.jetbrains.com/help/idea/http-response-handling-api-reference.html)

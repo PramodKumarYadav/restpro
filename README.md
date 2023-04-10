@@ -19,8 +19,8 @@ Test RestAPIS like a PRO.
 
 1. [**JDK 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) - as language of choice for writing this test framework.
 2. [**Maven 3.8.6+**](https://maven.apache.org/) - for project dependency management and running tests in CI.
-3. [Install **git-crypt** to encrypt/decrypt secrets](docs/README-GIT-CRYPT.md).
-4. [Install **pre-commit** to have code automatically and uniformly formatted (JAVA, JSON, XML, YAML)](docs/README-CODE-FORMATTING.md).
+3. [**git-crypt**](docs/README-GIT-CRYPT.md) - to encrypt/decrypt secret files.
+4. [**pre-commit**](docs/README-CODE-FORMATTING.md) - To have code automatically and uniformly formatted (JAVA, JSON, XML, YAML).
 
 ## Tool Set
 

@@ -27,6 +27,20 @@ public class BookingAPI {
                 .response();
     }
 
+    public static Response getBooking(String bookingId) {
+        return RestAssured.given()
+                .spec(BaseSpec.get().build())
+                .log()
+                .all()
+                .when()
+                .get(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+    }
+
     // todo: This method is tied to a specific auth token (user type/scope type).
     //  for your test to be flexible, your methods should be auth agnostic. So
     //  refactor this method or class later.
@@ -49,7 +63,7 @@ public class BookingAPI {
     // todo: This method is tied to a specific auth token (user type/scope type).
     //  for your test to be flexible, your methods should be auth agnostic. So
     //  refactor this method or class later.
-    public static Response patchBooking(BookingBody bookingBody, String bookingId) {
+    public static Response partiallyUpdateBooking(BookingBody bookingBody, String bookingId) {
         // Cookie: token={{auth_token}}
         return given()
                 .spec(BaseSpec.get(AuthAPI.getToken()).build())

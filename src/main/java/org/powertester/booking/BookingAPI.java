@@ -1,13 +1,17 @@
 package org.powertester.booking;
 
+import com.typesafe.config.Config;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.powertester.BaseSpec.BaseSpec;
 import org.powertester.authtoken.AuthAPI;
+import org.powertester.config.TestConfig;
 
 import static io.restassured.RestAssured.given;
 
 public class BookingAPI {
+    private static final Config CONFIG = TestConfig.getInstance().getConfig();
+
     public static Response newBooking(BookingBody bookingBody) {
         return RestAssured.given()
                 .spec(BaseSpec.get().build())
@@ -15,7 +19,7 @@ public class BookingAPI {
                 .log()
                 .all()
                 .when()
-                .post("/booking")
+                .post(CONFIG.getString("BOOKING_ENDPOINT"))
                 .then()
                 .log()
                 .all()
@@ -34,7 +38,7 @@ public class BookingAPI {
                 .log()
                 .all()
                 .when()
-                .put("/booking/" + bookingId)
+                .put(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
                 .then()
                 .log()
                 .all()
@@ -53,7 +57,7 @@ public class BookingAPI {
                 .log()
                 .all()
                 .when()
-                .patch("/booking/" + bookingId)
+                .patch(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
                 .then()
                 .log()
                 .all()
@@ -71,7 +75,7 @@ public class BookingAPI {
                 .log()
                 .all()
                 .when()
-                .delete("/booking/" + bookingId)
+                .delete(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
                 .then()
                 .log()
                 .all()

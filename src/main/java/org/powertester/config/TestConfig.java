@@ -2,9 +2,10 @@ package org.powertester.config;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.util.Objects;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Env configuration once loaded, is to remain constant for all classes using it. Thus we will
@@ -12,21 +13,21 @@ import lombok.extern.slf4j.Slf4j;
  * https://github.com/lightbend/config
  */
 @Slf4j
-public class TestEnvFactory {
+public class TestConfig {
   /**
    * With this approach, we are relying on JVM to create the unique instance of TestEnvFactory when
    * the class is loaded. The JVM guarantees that the instance will be created before any thread
    * accesses the static uniqueInstance variable. This code is thus guaranteed to be thread safe.
    */
-  private static final TestEnvFactory UNIQUE_INSTANCE = new TestEnvFactory();
+  private static final TestConfig UNIQUE_INSTANCE = new TestConfig();
 
   private Config config;
 
-  private TestEnvFactory() {
+  private TestConfig() {
     config = setConfig();
   }
 
-  public static TestEnvFactory getInstance() {
+  public static TestConfig getInstance() {
     return UNIQUE_INSTANCE;
   }
 

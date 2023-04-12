@@ -4,10 +4,11 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import org.powertester.booking.BookingAPI;
 import org.powertester.booking.BookingBody;
+import setup.TestSetup;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BookingTests {
+public class BookingTests extends TestSetup {
     @Test
     void assertThatAUserCanCreateANewBooking() {
         // Arrange

@@ -77,7 +77,7 @@ public class BookingTests extends TestSetup {
         log.info("partialBookingBody: {}", partialBookingBody);
 
         // Act
-        Response response = BookingAPI.partiallyUpdateBooking(partialBookingBody, bookingId);
+        Response response = BookingAPI.patchBooking(partialBookingBody, bookingId);
         String firstname = response.body().jsonPath().getString("firstname");
         String lastname = response.body().jsonPath().getString("lastname");
 

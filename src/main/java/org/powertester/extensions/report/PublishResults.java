@@ -6,14 +6,15 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.typesafe.config.Config;
-import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.RestClient;
-import org.powertester.config.TestEnvFactory;
+import org.powertester.config.TestConfig;
+
+import java.io.IOException;
 
 @Slf4j
 public class PublishResults {
-  private static final Config CONFIG = TestEnvFactory.getInstance().getConfig();
+  private static final Config CONFIG = TestConfig.getInstance().getConfig();
 
   private static final ElasticServerChoices ELASTIC_SERVER =
       CONFIG.getEnum(ElasticServerChoices.class, "ELASTIC_SERVER");

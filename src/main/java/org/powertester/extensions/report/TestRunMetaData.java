@@ -4,15 +4,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.javafaker.Faker;
 import com.typesafe.config.Config;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.powertester.config.TestEnvFactory;
+import org.powertester.config.TestConfig;
 import org.powertester.extensions.TimingExtension;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Slf4j
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -21,7 +22,7 @@ import org.powertester.extensions.TimingExtension;
 @Data
 public class TestRunMetaData {
   private static final String PROJECT = "restpro";
-  private static final Config CONFIG = TestEnvFactory.getInstance().getConfig();
+  private static final Config CONFIG = TestConfig.getInstance().getConfig();
 
   private static final String RUN_TIME = LocalDateTime.now(ZoneId.of("UTC")).toString();
 

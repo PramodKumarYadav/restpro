@@ -5,31 +5,35 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.powertester.annotations.FailingTest;
+import org.powertester.booking.Booking;
 import org.powertester.booking.BookingAPI;
-import org.powertester.booking.BookingBody;
 import setup.TestSetup;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.apache.http.HttpStatus.SC_CREATED;
+import static org.apache.http.HttpStatus.SC_OK;
 
 @Slf4j
 public class BookingTests extends TestSetup {
-    private String bookingId;
-    private BookingBody bookingBody;
+    private Long bookingId;
+    private Booking booking;
 
     // Setup: Create a booking
     @BeforeEach
     public void setup() {
         // Arrange
-        bookingBody = BookingBody.getInstance();
-
+        booking = Booking.getInstance();
         // Act
-        Response response = BookingAPI.newBooking(bookingBody);
+        Response response = BookingAPI.newBooking(booking);
 
         // Assert
-        assertEquals(200, response.getStatusCode());
+        VerifyBookingResponse.assertThat(response)
+                .statusCodeIs(SC_OK)
+                .postHasBooking(booking)
+                .assertAll();
 
         // Set bookingId
-        bookingId = response.body().jsonPath().getString("bookingid");
+        bookingId = response.body().jsonPath().getLong("bookingid");
     }
 
     // TearDown: Delete the booking
@@ -38,52 +42,61 @@ public class BookingTests extends TestSetup {
         Response response = BookingAPI.deleteBooking(bookingId);
 
         // Assert (It should ideally be 200 but this application has a bug and it gives 201)
-        assertEquals(201, response.getStatusCode());
+        VerifyBookingResponse.assertThat(response)
+                .statusCodeIs(SC_CREATED)
+                .assertAll();
     }
 
     @Test
-    void assertThatAUserCanFetchAnExistingBooking() {
+    void assertThatAUserCanGetAnExistingBooking() {
         // Act
         Response response = BookingAPI.getBooking(bookingId);
-        String firstname = response.body().jsonPath().getString("firstname");
 
         // Assert
-        assertEquals(200, response.getStatusCode());
-        assertEquals("Jim", firstname);
+        VerifyBookingResponse.assertThat(response)
+                .statusCodeIs(SC_OK)
+                .hasBooking(booking)
+                .assertAll();
     }
 
     @Test
     void assertThatAUserCanUpdateAnExistingBooking() {
         // Arrange
-        bookingBody.setFirstname("Vinod");
+        booking.setFirstname("Vinod");
 
         // Act
-        Response response = BookingAPI.updateBooking(bookingBody, bookingId);
-        String firstname = response.body().jsonPath().getString("firstname");
+        Response response = BookingAPI.updateBooking(booking, bookingId);
 
         // Assert
-        assertEquals(200, response.getStatusCode());
-        assertEquals("Vinod", firstname);
+        VerifyBookingResponse.assertThat(response)
+                .statusCodeIs(SC_OK)
+                .hasBooking(booking)
+                .assertAll();
     }
 
-    @Test
+    @FailingTest
     void assertThatAUserCanPartiallyUpdateAnExistingBooking() {
         // Arrange
-        BookingBody partialBookingBody = BookingBody.builder()
+        Booking partialBooking = Booking.builder()
                 .setFirstname("Pramod")
                 .setLastname("Yadav")
                 .build();
 
-        log.info("partialBookingBody: {}", partialBookingBody);
+        log.info("partialBookingBody: {}", partialBooking);
 
         // Act
-        Response response = BookingAPI.patchBooking(partialBookingBody, bookingId);
-        String firstname = response.body().jsonPath().getString("firstname");
-        String lastname = response.body().jsonPath().getString("lastname");
+        Response response = BookingAPI.patchBooking(partialBooking, bookingId);
 
         // Assert
-        assertEquals(200, response.getStatusCode());
-        assertEquals("Pramod", firstname);
-        assertEquals("Yadav", lastname);
+        Booking expectedBooking = booking
+                .setFirstname(partialBooking.getFirstname())
+                .setLastname(partialBooking.getLastname());
+
+        VerifyBookingResponse.assertThat(response)
+                .statusCodeIs(SC_OK)
+                .containsValue("Pramod")
+                .containsValue("Yadav")
+                .hasBooking(expectedBooking)
+                .assertAll();
     }
 }

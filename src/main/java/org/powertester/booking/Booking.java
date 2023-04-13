@@ -16,7 +16,7 @@ import org.powertester.booking.entitites.Bookingdates;
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookingBody {
+public class Booking {
     private String firstname;
     private String lastname;
     private long totalprice;
@@ -24,13 +24,13 @@ public class BookingBody {
     private Bookingdates bookingdates;
     private String additionalneeds;
 
-    public static BookingBody getInstance() {
+    public static Booking getInstance() {
         Bookingdates bookingdates = Bookingdates.builder()
                 .setCheckin("2018-01-01")
                 .setCheckout("2019-01-01")
                 .build();
 
-        BookingBody bookingBody = BookingBody.builder()
+        Booking booking = Booking.builder()
                 .setFirstname("Jim")
                 .setLastname("Brown")
                 .setTotalprice(111)
@@ -39,7 +39,7 @@ public class BookingBody {
                 .setAdditionalneeds("Breakfast")
                 .build();
 
-        log.info("bookingBody: {}", bookingBody);
-        return bookingBody;
+        log.info("bookingBody: {}", booking);
+        return booking;
     }
 }

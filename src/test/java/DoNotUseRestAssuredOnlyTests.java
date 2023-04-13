@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
  * for writing tests. Do not use this as reference to design your tests.
  */
 
-public class BasicRestAssuredTests {
+public class DoNotUseRestAssuredOnlyTests {
     @Test
     // Given_When_Then
     public void assertThatUserCanCreateABooking() {

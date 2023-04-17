@@ -29,6 +29,7 @@ public class BookingTests extends TestSetup {
         // Assert
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
+                .matchesSchemaInAFile("booking-schema.json")
                 .postHasBooking(booking)
                 .assertAll();
 

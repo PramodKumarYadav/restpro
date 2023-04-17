@@ -4,6 +4,8 @@ import io.restassured.response.Response;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 public abstract class VerifyResponse<SELF_TYPE extends VerifyResponse<?>> {
     protected SELF_TYPE selfType;
     protected Response response;
@@ -27,6 +29,14 @@ public abstract class VerifyResponse<SELF_TYPE extends VerifyResponse<?>> {
         softAssertions.assertThat(response.getBody().asString())
                 .describedAs("responseBody")
                 .contains(value);
+
+        return selfType;
+    }
+
+    public SELF_TYPE matchesSchemaInAFile(String fileClassPath) {
+        softAssertions.assertThat(response.then().body(matchesJsonSchemaInClasspath(fileClassPath)))
+                .describedAs("Schema validation")
+                .getWritableAssertionInfo();
 
         return selfType;
     }

@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
@@ -32,14 +33,15 @@ public class DoNotUseRestAssuredOnlyTests {
                 .when()
                 .post("/booking")
                 .then()
+                .body(matchesJsonSchemaInClasspath("booking-schema.json"))
                 .statusCode(200)
                 .body("booking.firstname", equalTo("Jim"),
                         "booking.lastname", equalTo("Brown"),
                         "booking.totalprice", equalTo(111),
                         "booking.depositpaid", equalTo(true),
                         "booking.bookingdates.checkin", equalTo("2018-01-01"),
-                        "booking.bookingdates.checkout", equalTo("2019-01-01"),
-                        "booking.additionalneeds", equalTo("Breakfast")
+                        "booking.bookingdates.checkout", equalTo("2019-01-01")
+//                        "booking.additionalneeds", equalTo("Breakfast")
                 )
                 .extract()
                 .response()

@@ -8,8 +8,7 @@ Test RestAPIS like a PRO.
 ![stars](https://img.shields.io/github/stars/PramodKumarYadav/restpro)
 ![license](https://img.shields.io/github/license/PramodKumarYadav/restpro?style=flat-square)
 ![languages](https://img.shields.io/github/languages/count/pramodkumaryadav/restpro)
-
-![info](https://img.shields.io/static/v1?label=with-love&message=from-power-tester&color=blue?style=plastic&logo=appveyor)
+![info](https://img.shields.io/static/v1?label=with-love-from&message=power-tester&color=blue?style=plastic&logo=appveyor)
 
 > NOTE: If you see errors while running the project, make sure that you have
 > completed the getting started steps from below section (especially decrypting

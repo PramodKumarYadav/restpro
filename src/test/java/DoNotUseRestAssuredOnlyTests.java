@@ -33,7 +33,7 @@ public class DoNotUseRestAssuredOnlyTests {
                 .when()
                 .post("/booking")
                 .then()
-                .body(matchesJsonSchemaInClasspath("booking-schema.json"))
+                .body(matchesJsonSchemaInClasspath("create-booking-schema.json"))
                 .statusCode(200)
                 .body("booking.firstname", equalTo("Jim"),
                         "booking.lastname", equalTo("Brown"),

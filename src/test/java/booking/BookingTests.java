@@ -29,7 +29,7 @@ public class BookingTests extends TestSetup {
         // Assert
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
-                .matchesSchemaInAFile("booking-schema.json")
+                .matchesSchemaInAFile("create-booking-schema.json")
                 .postHasBooking(booking)
                 .assertAll();
 
@@ -56,6 +56,7 @@ public class BookingTests extends TestSetup {
         // Assert
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
+                .matchesSchemaInAFile("read-update-booking-schema.json")
                 .hasBooking(booking)
                 .assertAll();
     }
@@ -71,6 +72,7 @@ public class BookingTests extends TestSetup {
         // Assert
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
+                .matchesSchemaInAFile("read-update-booking-schema.json")
                 .hasBooking(booking)
                 .assertAll();
     }
@@ -95,6 +97,7 @@ public class BookingTests extends TestSetup {
 
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
+                .matchesSchemaInAFile("read-update-booking-schema.json")
                 .containsValue("Pramod")
                 .containsValue("Yadav")
                 .hasBooking(expectedBooking)

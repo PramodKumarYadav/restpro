@@ -2,6 +2,7 @@ package org.powertester.extensions.report;
 
 import co.elastic.clients.transport.TransportUtils;
 import com.typesafe.config.Config;
+import javax.net.ssl.SSLContext;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
@@ -11,8 +12,6 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
 import org.powertester.config.TestConfig;
-
-import javax.net.ssl.SSLContext;
 
 @Slf4j
 public class ElasticLowLevelRestClientFactory {

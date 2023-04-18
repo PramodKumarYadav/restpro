@@ -11,7 +11,7 @@ on:
         required: false
         type: string
         default: "flaky, failing"
-      
+
       test-environment:
         required: false
         type: string

@@ -14,18 +14,6 @@ public class VerifyBookingResponse extends VerifyResponse<VerifyBookingResponse>
     return new VerifyBookingResponse(response);
   }
 
-  public VerifyBookingResponse hasBookingId(Long bookingid) {
-    BookingResponse bookingResponse =
-        response.then().extract().response().as(BookingResponse.class);
-
-    softAssertions
-        .assertThat(bookingResponse.getBookingid())
-        .describedAs("bookingid")
-        .isEqualTo(bookingid);
-
-    return this;
-  }
-
   public VerifyBookingResponse postHasBooking(Booking expectedBooking) {
     BookingResponse bookingResponse =
         response.then().extract().response().as(BookingResponse.class);

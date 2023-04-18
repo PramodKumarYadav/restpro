@@ -17,29 +17,28 @@ import org.powertester.booking.entitites.Bookingdates;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Booking {
-    private String firstname;
-    private String lastname;
-    private long totalprice;
-    private boolean depositpaid;
-    private Bookingdates bookingdates;
-    private String additionalneeds;
+  private String firstname;
+  private String lastname;
+  private long totalprice;
+  private boolean depositpaid;
+  private Bookingdates bookingdates;
+  private String additionalneeds;
 
-    public static Booking getInstance() {
-        Bookingdates bookingdates = Bookingdates.builder()
-                .setCheckin("2018-01-01")
-                .setCheckout("2019-01-01")
-                .build();
+  public static Booking getInstance() {
+    Bookingdates bookingdates =
+        Bookingdates.builder().setCheckin("2018-01-01").setCheckout("2019-01-01").build();
 
-        Booking booking = Booking.builder()
-                .setFirstname("Jim")
-                .setLastname("Brown")
-                .setTotalprice(111)
-                .setDepositpaid(true)
-                .setBookingdates(bookingdates)
-                .setAdditionalneeds("Breakfast")
-                .build();
+    Booking booking =
+        Booking.builder()
+            .setFirstname("Jim")
+            .setLastname("Brown")
+            .setTotalprice(111)
+            .setDepositpaid(true)
+            .setBookingdates(bookingdates)
+            .setAdditionalneeds("Breakfast")
+            .build();
 
-        log.info("bookingBody: {}", booking);
-        return booking;
-    }
+    log.info("bookingBody: {}", booking);
+    return booking;
+  }
 }

@@ -1,47 +1,47 @@
 package asserts;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 import io.restassured.response.Response;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-
 public abstract class VerifyResponse<SELF_TYPE extends VerifyResponse<?>> {
-    protected SELF_TYPE selfType;
-    protected Response response;
-    protected SoftAssertions softAssertions;
+  protected SELF_TYPE selfType;
+  protected Response response;
+  protected SoftAssertions softAssertions;
 
-    protected VerifyResponse(Class<SELF_TYPE> selfType, Response response) {
-        this.selfType = selfType.cast(this);
-        this.response = response;
-        this.softAssertions = new SoftAssertions();
-    }
+  protected VerifyResponse(Class<SELF_TYPE> selfType, Response response) {
+    this.selfType = selfType.cast(this);
+    this.response = response;
+    this.softAssertions = new SoftAssertions();
+  }
 
-    public SELF_TYPE statusCodeIs(int statusCode) {
-        Assertions.assertThat(response.getStatusCode())
-                .describedAs("statusCode")
-                .isEqualTo(statusCode);
+  public SELF_TYPE statusCodeIs(int statusCode) {
+    Assertions.assertThat(response.getStatusCode()).describedAs("statusCode").isEqualTo(statusCode);
 
-        return selfType;
-    }
+    return selfType;
+  }
 
-    public SELF_TYPE containsValue(String value) {
-        softAssertions.assertThat(response.getBody().asString())
-                .describedAs("responseBody")
-                .contains(value);
+  public SELF_TYPE containsValue(String value) {
+    softAssertions
+        .assertThat(response.getBody().asString())
+        .describedAs("responseBody")
+        .contains(value);
 
-        return selfType;
-    }
+    return selfType;
+  }
 
-    public SELF_TYPE matchesSchema(String fileClassPath) {
-        softAssertions.assertThat(response.then().body(matchesJsonSchemaInClasspath(fileClassPath)))
-                .describedAs("Schema validation")
-                .getWritableAssertionInfo();
+  public SELF_TYPE matchesSchema(String fileClassPath) {
+    softAssertions
+        .assertThat(response.then().body(matchesJsonSchemaInClasspath(fileClassPath)))
+        .describedAs("Schema validation")
+        .getWritableAssertionInfo();
 
-        return selfType;
-    }
+    return selfType;
+  }
 
-    public void assertAll() {
-        softAssertions.assertAll();
-    }
+  public void assertAll() {
+    softAssertions.assertAll();
+  }
 }

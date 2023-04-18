@@ -18,16 +18,18 @@ import org.powertester.config.TestConfig;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthBody {
-    private String username;
-    private String password;
+  private String username;
+  private String password;
 
-    private static final Config CONFIG = TestConfig.getInstance().getConfig();
-    public static AuthBody getInstance() {
-        AuthBody authBody = AuthBody.builder()
-                .setUsername(CONFIG.getString("ADMIN_USERNAME"))
-                .setPassword(CONFIG.getString("ADMIN_PASSWORD"))
-                .build();
+  private static final Config CONFIG = TestConfig.getInstance().getConfig();
 
-        return authBody;
-    }
+  public static AuthBody getInstance() {
+    AuthBody authBody =
+        AuthBody.builder()
+            .setUsername(CONFIG.getString("ADMIN_USERNAME"))
+            .setPassword(CONFIG.getString("ADMIN_PASSWORD"))
+            .build();
+
+    return authBody;
+  }
 }

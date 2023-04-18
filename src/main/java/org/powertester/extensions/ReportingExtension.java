@@ -12,7 +12,7 @@ import org.powertester.extensions.report.TestRunMetaData;
 public class ReportingExtension implements AfterEachCallback {
   private static final Config CONFIG = TestConfig.getInstance().getConfig();
   private static final Boolean PUBLISH_RESULTS_TO_ELASTIC =
-          CONFIG.getBoolean("PUBLISH_RESULTS_TO_ELASTIC");
+      CONFIG.getBoolean("PUBLISH_RESULTS_TO_ELASTIC");
 
   @Override
   public void afterEach(ExtensionContext context) throws Exception {

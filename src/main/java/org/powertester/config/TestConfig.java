@@ -2,10 +2,9 @@ package org.powertester.config;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Env configuration once loaded, is to remain constant for all classes using it. Thus we will

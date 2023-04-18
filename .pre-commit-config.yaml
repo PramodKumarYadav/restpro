@@ -6,7 +6,6 @@ repos:
         -   id: check-json
         -   id: check-xml
         -   id: mixed-line-ending
-        -   id: pretty-format-json
         -   id: end-of-file-fixer
         -   id: trailing-whitespace
 

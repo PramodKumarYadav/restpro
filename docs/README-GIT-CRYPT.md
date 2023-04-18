@@ -7,7 +7,7 @@ Our secret keys are saved in `secrets.*` files and encrypted with [`git-crypt`](
 
 ## Install Git-Crypt
 
-Reference: https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih 
+Reference: https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih
 
 ### Step1: Verify if you have git crypt installed on your system
 
@@ -25,7 +25,7 @@ Install `git-crypt` on your system:
 - Linux `sudo apt install git-crypt`
 - [Manual installation](https://github.com/AGWA/git-crypt/blob/master/INSTALL.md)
 
-## Encrypt Project 
+## Encrypt Project
 
 > One time activity, to be done by the very first user of this project.
 
@@ -45,11 +45,11 @@ set up git -crypt in the project repository. Run below commands to git crypt the
 5. Check before committing.
    `git-crypt status`
 6. Ignore the key `git-crypt-key-restpro` from version control by adding it to the `.gitignore` file.
-> Ignore git crypt key (in a real production world scenario). 
-> I am not ignoring it here since its an open source project and anyone who wants to clone the project would need this 
-> key to work with. 
+> Ignore git crypt key (in a real production world scenario).
+> I am not ignoring it here since its an open source project and anyone who wants to clone the project would need this
+> key to work with.
 
-> Ideally, if you were working in a company, this key would be preserved in a password manager such 
+> Ideally, if you were working in a company, this key would be preserved in a password manager such
 > as 1password from where everyone could download this key and decrypt files.
 
 7. Push files to github

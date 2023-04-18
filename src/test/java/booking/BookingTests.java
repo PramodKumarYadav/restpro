@@ -93,6 +93,7 @@ public class BookingTests extends TestSetup {
         booking
             .setFirstname(partialBooking.getFirstname())
             .setLastname(partialBooking.getLastname());
+
     VerifyBookingResponse.assertThat(response)
         .statusCodeIs(SC_OK)
         .matchesSchema("schemas/read-update-booking-schema.json")

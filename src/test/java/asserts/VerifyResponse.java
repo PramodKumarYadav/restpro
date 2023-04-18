@@ -33,7 +33,7 @@ public abstract class VerifyResponse<SELF_TYPE extends VerifyResponse<?>> {
         return selfType;
     }
 
-    public SELF_TYPE matchesSchemaInAFile(String fileClassPath) {
+    public SELF_TYPE matchesSchema(String fileClassPath) {
         softAssertions.assertThat(response.then().body(matchesJsonSchemaInClasspath(fileClassPath)))
                 .describedAs("Schema validation")
                 .getWritableAssertionInfo();

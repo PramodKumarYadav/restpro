@@ -15,6 +15,8 @@ import static org.apache.http.HttpStatus.SC_OK;
 
 @Slf4j
 public class BookingTests extends TestSetup {
+    public static final String READ_UPDATE_BOOKING_SCHEMA_FILE_PATH = "schemas/read-update-booking-schema.json";
+    public static final String CREATE_BOOKING_SCHEMA_FILE_PATH = "schemas/create-booking-schema.json";
     private Long bookingId;
     private Booking booking;
 
@@ -29,7 +31,7 @@ public class BookingTests extends TestSetup {
         // Assert
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
-                .matchesSchemaInAFile("create-booking-schema.json")
+                .matchesSchema(CREATE_BOOKING_SCHEMA_FILE_PATH)
                 .postHasBooking(booking)
                 .assertAll();
 
@@ -56,7 +58,7 @@ public class BookingTests extends TestSetup {
         // Assert
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
-                .matchesSchemaInAFile("read-update-booking-schema.json")
+                .matchesSchema(READ_UPDATE_BOOKING_SCHEMA_FILE_PATH)
                 .hasBooking(booking)
                 .assertAll();
     }
@@ -72,7 +74,7 @@ public class BookingTests extends TestSetup {
         // Assert
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
-                .matchesSchemaInAFile("read-update-booking-schema.json")
+                .matchesSchema("schemas/read-update-booking-schema.json")
                 .hasBooking(booking)
                 .assertAll();
     }
@@ -97,7 +99,7 @@ public class BookingTests extends TestSetup {
 
         VerifyBookingResponse.assertThat(response)
                 .statusCodeIs(SC_OK)
-                .matchesSchemaInAFile("read-update-booking-schema.json")
+                .matchesSchema("schemas/read-update-booking-schema.json")
                 .containsValue("Pramod")
                 .containsValue("Yadav")
                 .hasBooking(expectedBooking)

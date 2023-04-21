@@ -1,4 +1,4 @@
-package org.powertester.authtoken;
+package org.powertester.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.typesafe.config.Config;

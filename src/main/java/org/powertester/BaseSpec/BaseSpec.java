@@ -1,4 +1,4 @@
-package org.powertester.BaseSpec;
+package org.powertester.basespec;
 
 import com.typesafe.config.Config;
 import io.restassured.builder.RequestSpecBuilder;

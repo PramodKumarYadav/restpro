@@ -1,4 +1,4 @@
-package org.powertester.authtoken;
+package org.powertester.auth;
 
 import static io.restassured.RestAssured.given;
 

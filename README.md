@@ -31,10 +31,10 @@ Test RestAPIS like a PRO.
 - [x] Shows how to create a decoupled test design (that minimises maintenance efforts by reducing code
   duplication and increases code readability by separating test intentions from implementation details).
 - [x] Allows users to write fluent assertions for asserting both status and response body, without any code duplication.
-- [ ] Creates APIs that are scope/role agnostic. This allows you to use the same APIs and data to write tests for
+- [x] Creates APIs that are scope/role agnostic. This allows you to use the same APIs and data to write tests for
   different user roles and scopes.
-- [ ] Shows how to reuse the same auth token in all the tests for same role/scope using a Singleton pattern.
-- [ ] Shows how to provide different token types for different role/scopes using a TokenFactory pattern.
+- [x] Shows how to provide different token types for different role/scopes using a TokenFactory pattern.
+- [x] Shows how to reuse the same auth token in all the tests for same role/scope using a Singleton pattern.
 - [ ] Shows how to use health checks in the test CI to have efficient pipelines.
 - [ ] Shows how to insert test data dynamically in each test.
 
@@ -55,9 +55,9 @@ Test RestAPIS like a PRO.
 
 - [ ] Shows how to integrate your tests in CI (GitHub Actions).
 - [ ] Shows how to log your test results into a test monitoring system (such as Elastic/Kibana or DataDog)
-- [ ] Shows how to do JSON Schema validation.
-- [ ] Shows how to separate config from code.
-- [ ] Shows how to deal with Secrets in local and in CI. Also on how to skip logging secret information on console.
+- [x] Shows how to do JSON Schema validation.
+- [x] Shows how to separate config from code.
+- [x] Shows how to deal with Secrets in local and in CI. Also on how to skip logging secret information on console.
 - [ ] More to be added...
 
 ## ⚙ Tool Set

@@ -91,7 +91,7 @@ public class BookingTests extends TestSetup {
       log.info("partialBookingBody: {}", partialBooking);
 
       // Act
-      Response response = BookingAPI.useAs(ADMIN).patchBooking(booking, bookingId);
+      Response response = BookingAPI.useAs(ADMIN).patchBooking(partialBooking, bookingId);
 
       // Assert
       Booking expectedBooking =
@@ -102,8 +102,6 @@ public class BookingTests extends TestSetup {
       VerifyBookingResponse.assertThat(response)
           .statusCodeIs(SC_OK)
           .matchesSchema("schemas/read-update-booking-schema.json")
-          .containsValue("Pramod")
-          .containsValue("Yadav")
           .hasBooking(expectedBooking)
           .assertAll();
     }

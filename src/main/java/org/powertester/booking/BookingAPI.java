@@ -9,16 +9,16 @@ import org.powertester.auth.Scope;
 import org.powertester.basespec.SpecFactory;
 import org.powertester.config.TestConfig;
 
-public class BookingAPIRefactored {
+public class BookingAPI {
   private static final Config CONFIG = TestConfig.getInstance().getConfig();
   private Scope scope;
 
-  private BookingAPIRefactored(Scope scope) {
+  private BookingAPI(Scope scope) {
     this.scope = scope;
   }
 
-  public static BookingAPIRefactored useAs(Scope scope) {
-    return new BookingAPIRefactored(scope);
+  public static BookingAPI useAs(Scope scope) {
+    return new BookingAPI(scope);
   }
 
   public Response newBooking(Booking booking) {

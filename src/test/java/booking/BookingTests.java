@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.powertester.annotations.FailingTest;
 import org.powertester.booking.Booking;
-import org.powertester.booking.BookingAPIRefactored;
+import org.powertester.booking.BookingAPI;
 import setup.TestSetup;
 
 @Slf4j
@@ -29,7 +29,7 @@ public class BookingTests extends TestSetup {
     // Arrange
     booking = Booking.getInstance();
     // Act
-    Response response = BookingAPIRefactored.useAs(ADMIN).newBooking(booking);
+    Response response = BookingAPI.useAs(ADMIN).newBooking(booking);
 
     // Assert
     VerifyBookingResponse.assertThat(response)
@@ -45,64 +45,68 @@ public class BookingTests extends TestSetup {
   // TearDown: Delete the booking
   @AfterEach
   public void tearDown() {
-    Response response = BookingAPIRefactored.useAs(ADMIN).deleteBooking(bookingId);
+    Response response = BookingAPI.useAs(ADMIN).deleteBooking(bookingId);
 
     // Assert (It should ideally be 200 but this application has a bug and it gives 201)
     VerifyBookingResponse.assertThat(response).statusCodeIs(SC_CREATED).assertAll();
   }
 
-  @Test
-  void assertThatAUserCanGetAnExistingBooking() {
-    // Act
-    Response response = BookingAPIRefactored.useAs(GUEST).getBooking(bookingId);
+  @Nested
+  class AdminUser {
+    @Test
+    void assertThatAUserCanGetAnExistingBooking() {
+      // Act
+      Response response = BookingAPI.useAs(GUEST).getBooking(bookingId);
 
-    // Assert
-    VerifyBookingResponse.assertThat(response)
-        .statusCodeIs(SC_OK)
-        .matchesSchema(READ_UPDATE_BOOKING_SCHEMA_FILE_PATH)
-        .hasBooking(booking)
-        .assertAll();
-  }
+      // Assert
+      VerifyBookingResponse.assertThat(response)
+          .statusCodeIs(SC_OK)
+          .matchesSchema(READ_UPDATE_BOOKING_SCHEMA_FILE_PATH)
+          .hasBooking(booking)
+          .assertAll();
+    }
 
-  @Test
-  void assertThatAUserCanUpdateAnExistingBooking() {
-    // Arrange
-    booking.setFirstname("Vinod");
+    @Test
+    void assertThatAUserCanUpdateAnExistingBooking() {
+      // Arrange
+      booking.setFirstname("Vinod");
 
-    // Act
-    Response response = BookingAPIRefactored.useAs(ADMIN).updateBooking(booking, bookingId);
+      // Act
+      Response response = BookingAPI.useAs(ADMIN).updateBooking(booking, bookingId);
 
-    // Assert
-    VerifyBookingResponse.assertThat(response)
-        .statusCodeIs(SC_OK)
-        .matchesSchema("schemas/read-update-booking-schema.json")
-        .hasBooking(booking)
-        .assertAll();
-  }
+      // Assert
+      VerifyBookingResponse.assertThat(response)
+          .statusCodeIs(SC_OK)
+          .matchesSchema("schemas/read-update-booking-schema.json")
+          .hasBooking(booking)
+          .assertAll();
+    }
 
-  @FailingTest
-  void assertThatAUserCanPartiallyUpdateAnExistingBooking() {
-    // Arrange
-    Booking partialBooking = Booking.builder().setFirstname("Pramod").setLastname("Yadav").build();
+    @FailingTest
+    void assertThatAUserCanPartiallyUpdateAnExistingBooking() {
+      // Arrange
+      Booking partialBooking =
+          Booking.builder().setFirstname("Pramod").setLastname("Yadav").build();
 
-    log.info("partialBookingBody: {}", partialBooking);
+      log.info("partialBookingBody: {}", partialBooking);
 
-    // Act
-    Response response = BookingAPIRefactored.useAs(ADMIN).patchBooking(booking, bookingId);
+      // Act
+      Response response = BookingAPI.useAs(ADMIN).patchBooking(booking, bookingId);
 
-    // Assert
-    Booking expectedBooking =
-        booking
-            .setFirstname(partialBooking.getFirstname())
-            .setLastname(partialBooking.getLastname());
+      // Assert
+      Booking expectedBooking =
+          booking
+              .setFirstname(partialBooking.getFirstname())
+              .setLastname(partialBooking.getLastname());
 
-    VerifyBookingResponse.assertThat(response)
-        .statusCodeIs(SC_OK)
-        .matchesSchema("schemas/read-update-booking-schema.json")
-        .containsValue("Pramod")
-        .containsValue("Yadav")
-        .hasBooking(expectedBooking)
-        .assertAll();
+      VerifyBookingResponse.assertThat(response)
+          .statusCodeIs(SC_OK)
+          .matchesSchema("schemas/read-update-booking-schema.json")
+          .containsValue("Pramod")
+          .containsValue("Yadav")
+          .hasBooking(expectedBooking)
+          .assertAll();
+    }
   }
 
   @Nested
@@ -113,7 +117,7 @@ public class BookingTests extends TestSetup {
       booking.setFirstname("Vinod");
 
       // Act
-      Response response = BookingAPIRefactored.useAs(GUEST).updateBooking(booking, bookingId);
+      Response response = BookingAPI.useAs(GUEST).updateBooking(booking, bookingId);
 
       // Assert
       VerifyBookingResponse.assertThat(response).statusCodeIs(SC_FORBIDDEN).assertAll();

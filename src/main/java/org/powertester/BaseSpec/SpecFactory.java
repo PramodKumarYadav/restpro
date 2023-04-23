@@ -18,9 +18,9 @@ public class SpecFactory {
       case GUEST:
         return get();
       case MAINTAINER:
-        return get(TokenFactory.getTokenFor(MAINTAINER));
+        return get(TokenFactory.getInstance().getTokenFor(MAINTAINER));
       case ADMIN:
-        return get(TokenFactory.getTokenFor(ADMIN));
+        return get(TokenFactory.getInstance().getTokenFor(ADMIN));
       default:
         throw new IllegalStateException(
             "Not a valid scope. Pick a scope from " + Arrays.toString(Scope.values()));

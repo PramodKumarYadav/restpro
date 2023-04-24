@@ -14,10 +14,11 @@ Test RestAPIS like a PRO.
 > completed the getting started steps from below section (especially decrypting
 > encrypted config files using `git-crypt`.
 
-### Application under test
+## Application under test
+
 [Restful booker](https://restful-booker.herokuapp.com/) - An API playground created by [Mark Winteringham](https://www.mwtestconsultancy.co.uk/) for those wanting to learn more about API testing and tools.
 
-### 🔢 Requiring (one time) manual setup by user
+## 🔢 Requiring (one time) manual setup by user
 
 1. [**JDK 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) - as language of choice
    for writing this test framework.

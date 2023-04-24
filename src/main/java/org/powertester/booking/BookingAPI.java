@@ -26,12 +26,12 @@ public class BookingAPI {
         .spec(SpecFactory.getSpecFor(scope).build())
         .body(booking)
         .log()
-        .all()
+        .ifValidationFails()
         .when()
         .post(CONFIG.getString("BOOKING_ENDPOINT"))
         .then()
         .log()
-        .all()
+        .ifError()
         .extract()
         .response();
   }
@@ -40,12 +40,12 @@ public class BookingAPI {
     return RestAssured.given()
         .spec(SpecFactory.getSpecFor(scope).build())
         .log()
-        .all()
+        .ifValidationFails()
         .when()
         .get(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
         .then()
         .log()
-        .all()
+        .ifError()
         .extract()
         .response();
   }
@@ -56,12 +56,12 @@ public class BookingAPI {
         .spec(SpecFactory.getSpecFor(scope).build())
         .body(booking)
         .log()
-        .all()
+        .ifValidationFails()
         .when()
         .put(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
         .then()
         .log()
-        .all()
+        .ifError()
         .extract()
         .response();
   }
@@ -72,12 +72,12 @@ public class BookingAPI {
         .spec(SpecFactory.getSpecFor(scope).build())
         .body(booking)
         .log()
-        .all()
+        .ifValidationFails()
         .when()
         .patch(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
         .then()
         .log()
-        .all()
+        .ifError()
         .extract()
         .response();
   }
@@ -87,12 +87,12 @@ public class BookingAPI {
     return given()
         .spec(SpecFactory.getSpecFor(scope).build())
         .log()
-        .all()
+        .ifValidationFails()
         .when()
         .delete(CONFIG.getString("BOOKING_ID_ENDPOINT"), bookingId)
         .then()
         .log()
-        .all()
+        .ifError()
         .extract()
         .response();
   }

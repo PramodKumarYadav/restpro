@@ -58,16 +58,15 @@ public class TokenFactory {
             .baseUri(CONFIG.getString("BASE_URL"))
             .body(authBody)
             .log()
-            .all()
+            .ifValidationFails()
             .when()
             .post(CONFIG.getString("AUTH_ENDPOINT"))
             .then()
             .log()
-            .all()
+            .ifError()
             .extract()
             .response();
 
-    log.info("token: {}", response.body().jsonPath().getString("token"));
     return response.body().jsonPath().getString("token");
   }
 }

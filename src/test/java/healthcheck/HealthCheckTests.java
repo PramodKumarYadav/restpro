@@ -14,6 +14,6 @@ public class HealthCheckTests extends TestSetup {
   void assertThatRestfulBookerApplicationIsUpAndHealthy() {
     // Act
     Response response = HealthCheckAPI.healthCheck();
-    assertEquals(200, response.getStatusCode());
+    assertEquals(201, response.getStatusCode());
   }
 }

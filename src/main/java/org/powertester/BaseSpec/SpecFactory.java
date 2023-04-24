@@ -5,7 +5,10 @@ import static org.powertester.auth.Scope.MAINTAINER;
 
 import com.typesafe.config.Config;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.config.LogConfig;
+import io.restassured.config.RestAssuredConfig;
 import java.util.Arrays;
+import java.util.List;
 import org.powertester.auth.Scope;
 import org.powertester.auth.TokenFactory;
 import org.powertester.config.TestConfig;
@@ -35,6 +38,12 @@ public class SpecFactory {
   }
 
   private static RequestSpecBuilder get(String token) {
-    return get().addCookie("token", token);
+    return get()
+        .addHeader("Cookie", "token=" + token)
+        .addHeader("Authorization", "some-value")
+        .setConfig(
+            RestAssuredConfig.config()
+                .logConfig(
+                    LogConfig.logConfig().blacklistHeaders(List.of("Cookie", "Authorization"))));
   }
 }

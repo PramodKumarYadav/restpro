@@ -11,6 +11,6 @@ jobs:
   trigger-tests-on-a-pull-request:
     uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
-      tags-of-tests-to-include: "smoke"
+      tags-of-tests-to-include: ""
       run-name: "${{ github.event.pull_request.title }}"
     secrets: inherit

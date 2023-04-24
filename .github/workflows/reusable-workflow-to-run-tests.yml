@@ -42,6 +42,16 @@ jobs:
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
 
+      - name: HealthCheck
+        run: >
+          mvn
+          -DexcludedGroups="${{ inputs.tags-of-tests-to-exclude }}"
+          -Dgroups="healthcheck"
+          -DTEST_ENV="${{ inputs.test-environment }}"
+          -DTRIGGERED_BY="${{ github.event_name }}"
+          -DRUN_NAME="${{ inputs.run-name }}"
+          -B package --file pom.xml
+
       - name: Test with Maven
         run: >
           mvn

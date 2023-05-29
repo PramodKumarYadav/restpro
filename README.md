@@ -107,3 +107,7 @@ Key tools to be used in this core framework are:
 
 - [HOCON](https://plugins.jetbrains.com/plugin/10481-hocon) - For config and secrets files syntax highlight.
 - [.ignore](https://plugins.jetbrains.com/plugin/7495--ignore) - For (dockerignore, gitignore) files syntax highlight .
+
+## Dummy section
+
+Add some text here.

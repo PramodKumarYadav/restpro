@@ -11,4 +11,15 @@
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
     </root>
+
+    <!-- For controlling logging at package level-->
+    <logger name="org.hibernate.SQL" level="INFO" />
+
+    <!-- For Publishing logs of a specific class using another custom appender (other than STDOUT). Of-course Custom appender needs to exist-->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" >
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="ElasticExtension" level="INFO" >
+        <appender-ref ref="KAFKA_ELASTIC_APPENDER" />
+    </logger>
 </configuration>

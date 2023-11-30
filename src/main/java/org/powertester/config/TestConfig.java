@@ -53,10 +53,13 @@ public class TestConfig {
 
   private Config getAllConfigFromFilesInTheResourcePath(String resourceBasePath) {
     try {
-      for (File file : Objects.requireNonNull(Paths.get("src/main/resources/" + resourceBasePath).toFile().listFiles())) {
+      for (File file :
+          Objects.requireNonNull(
+              Paths.get("src/main/resources/" + resourceBasePath).toFile().listFiles())) {
         log.info("file path: {}", file);
 
-        Config childConfig = ConfigFactory.load(String.format("%s/%s", resourceBasePath, file.getName()));
+        Config childConfig =
+            ConfigFactory.load(String.format("%s/%s", resourceBasePath, file.getName()));
         config = config.withFallback(childConfig);
       }
 

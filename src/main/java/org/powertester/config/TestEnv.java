@@ -16,8 +16,8 @@ public enum TestEnv {
   }
 
   public static TestEnv getEnumByValue(String value) {
-    for(TestEnv testEnv: TestEnv.values()){
-      if(testEnv.getValue().equalsIgnoreCase(value)){
+    for (TestEnv testEnv : TestEnv.values()) {
+      if (testEnv.getValue().equalsIgnoreCase(value)) {
         return testEnv;
       }
     }

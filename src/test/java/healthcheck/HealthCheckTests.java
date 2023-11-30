@@ -10,7 +10,7 @@ import org.powertester.healthcheck.HealthCheckAPI;
 
 @Slf4j
 @HealthCheckTest
-public class HealthCheckTests {
+class HealthCheckTests {
   @Test
   void assertThatRestfulBookerApplicationIsUpAndHealthy() {
     // Act

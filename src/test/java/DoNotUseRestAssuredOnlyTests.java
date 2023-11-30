@@ -3,11 +3,13 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.jupiter.api.Test;
+import org.powertester.annotations.FlakyTest;
 
 /**
  * These tests are for demo purpose only (and to show the challenges that comes with relying only on
  * RestAssured for writing tests. Do not use this as reference to design your tests.
  */
+@FlakyTest
 public class DoNotUseRestAssuredOnlyTests {
   @Test
   // Given_When_Then

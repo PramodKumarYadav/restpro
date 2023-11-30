@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.typesafe.config.Config;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,19 +21,21 @@ import org.powertester.extensions.TimingExtension;
 @NoArgsConstructor
 @Data
 public class TestRunMetaData {
-  private static final String PROJECT = "restpro";
   private static final Config CONFIG = TestConfig.getInstance().getConfig();
 
   private static final String RUN_TIME = LocalDateTime.now(ZoneId.of("UTC")).toString();
 
-  private static final String RUN_NAME = getRunName();
+  private static final String RUN_NAME = new Faker().funnyName().name();
+
   private static final String TRIGGERED_BY = getTriggeredBy();
 
   /**
    * Note: Jackson would ignore all above static variables when creating a JSON object to push to
    * Elastic; and will only consider below "fields" to create a Json data to publish.
    */
-  private String project;
+  private final String project = "restpro";
+
+  private final String testEnvironment = CONFIG.getString("TEST_ENV");
 
   @JsonProperty("run-time")
   private String runTime;
@@ -40,47 +43,54 @@ public class TestRunMetaData {
   @JsonProperty("run-name")
   private String runName;
 
+  @JsonProperty("triggered-by")
+  private String triggeredBy;
+
   @JsonProperty("test-class")
   private String testClass;
 
   @JsonProperty("test-name")
   private String testName;
 
-  private String status;
-  private String reason;
+  @JsonProperty("test-type")
+  private String testType;
 
-  @JsonProperty("triggered-by")
-  private String triggeredBy;
+  private String status;
+
+  private String reason;
 
   @JsonProperty("time (Sec)")
   private String duration;
 
   public TestRunMetaData setBody(ExtensionContext context) {
-    project = PROJECT;
-
     runTime = RUN_TIME;
     runName = RUN_NAME;
+    triggeredBy = TRIGGERED_BY;
 
     testClass = context.getTestClass().orElseThrow().getSimpleName();
     testName = context.getDisplayName();
 
-    setDuration();
+    testType = getTestType(context);
+
+    duration = getTestDuration();
 
     setTestStatusAndReason(context);
-
-    triggeredBy = TRIGGERED_BY;
 
     return this;
   }
 
-  private void setDuration() {
+  private String getTestDuration() {
+    String testDuration;
     if (TimingExtension.getTestExecutionTimeThread() >= 5) {
-      duration = TimingExtension.getTestExecutionTimeThread() + " ⏰";
+      testDuration = TimingExtension.getTestExecutionTimeThread() + " ⏰";
     } else {
-      duration = String.valueOf(TimingExtension.getTestExecutionTimeThread());
+      testDuration = String.valueOf(TimingExtension.getTestExecutionTimeThread());
     }
 
-    log.info("duration {}", duration);
+    TimingExtension.removeTestExecutionTimeThread();
+    log.info("testDuration {}", testDuration);
+
+    return testDuration;
   }
 
   private void setTestStatusAndReason(ExtensionContext context) {
@@ -102,11 +112,19 @@ public class TestRunMetaData {
     }
   }
 
-  private static String getRunName() {
-    if (CONFIG.getString("RUN_NAME").isEmpty()) {
-      return new Faker().funnyName().name();
-    } else {
-      return CONFIG.getString("RUN_NAME");
-    }
+  // Set test-type based on annotation at the class level
+  private String getTestType(ExtensionContext context) {
+    return context
+        .getTestClass()
+        .flatMap(
+            clazz ->
+                Arrays.stream(clazz.getAnnotations())
+                    .filter(
+                        annotation ->
+                            annotation.annotationType().getSimpleName().contains("Test")
+                                || annotation.annotationType().getSimpleName().contains("Check"))
+                    .map(annotation -> annotation.annotationType().getSimpleName())
+                    .findFirst())
+        .orElse("undefined");
   }
 }

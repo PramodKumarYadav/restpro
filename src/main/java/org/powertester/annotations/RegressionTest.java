@@ -8,5 +8,5 @@ import org.junit.jupiter.api.Tag;
 
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("healthcheck")
-public @interface HealthCheckTest {}
+@Tag("regression")
+public @interface RegressionTest {}

@@ -11,10 +11,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.powertester.annotations.FailingTest;
+import org.powertester.annotations.RegressionTest;
 import org.powertester.booking.Booking;
 import org.powertester.booking.BookingAPI;
 
 @Slf4j
+@RegressionTest
 public class BookingTests {
   public static final String READ_UPDATE_BOOKING_SCHEMA_FILE_PATH =
       "schemas/read-update-booking-schema.json";
@@ -82,6 +84,7 @@ public class BookingTests {
     }
 
     @FailingTest
+    @Test
     void assertThatAUserCanPartiallyUpdateAnExistingBooking() {
       // Arrange
       Booking partialBooking =

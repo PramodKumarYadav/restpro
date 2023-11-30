@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.plugin>3.10.1</maven.compiler.plugin>
@@ -17,8 +17,6 @@
         <maven.site.plugin>3.11.0</maven.site.plugin>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <lombok.version>1.18.24</lombok.version>
-        <slf4j.version>2.0.0-alpha7</slf4j.version>
-        <log4j.version>2.17.2</log4j.version>
         <typesafe.version>1.4.2</typesafe.version>
         <elasticsearch-java.version>8.6.1</elasticsearch-java.version>
         <jackson-databind.version>2.14.1</jackson-databind.version>
@@ -28,6 +26,7 @@
         <assertj-core.version>3.24.2</assertj-core.version>
         <HikariCP.version>5.1.0</HikariCP.version>
         <awaitility.version>4.2.0</awaitility.version>
+        <logback-classic.version>1.4.13</logback-classic.version>
     </properties>
 
     <dependencies>
@@ -61,18 +60,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-reload4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-reload4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -118,6 +105,13 @@
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
             <version>${awaitility.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <!-- Below dependency contains both logback core and Slf4j api -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
         </dependency>
     </dependencies>
     <build>

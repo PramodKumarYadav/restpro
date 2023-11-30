@@ -20,25 +20,30 @@ import org.powertester.extensions.TimingExtension;
 @NoArgsConstructor
 @Data
 public class TestRunMetaData {
-  private static final String PROJECT = "restpro";
   private static final Config CONFIG = TestConfig.getInstance().getConfig();
 
   private static final String RUN_TIME = LocalDateTime.now(ZoneId.of("UTC")).toString();
 
-  private static final String RUN_NAME = getRunName();
+  private static final String RUN_NAME = new Faker().funnyName().name();
+
   private static final String TRIGGERED_BY = getTriggeredBy();
 
   /**
    * Note: Jackson would ignore all above static variables when creating a JSON object to push to
    * Elastic; and will only consider below "fields" to create a Json data to publish.
    */
-  private String project;
+  private final String project = "restpro";
+
+  private final String testEnvironment = CONFIG.getString("TEST_ENV");
 
   @JsonProperty("run-time")
   private String runTime;
 
   @JsonProperty("run-name")
   private String runName;
+
+  @JsonProperty("triggered-by")
+  private String triggeredBy;
 
   @JsonProperty("test-class")
   private String testClass;
@@ -47,19 +52,16 @@ public class TestRunMetaData {
   private String testName;
 
   private String status;
-  private String reason;
 
-  @JsonProperty("triggered-by")
-  private String triggeredBy;
+  private String reason;
 
   @JsonProperty("time (Sec)")
   private String duration;
 
   public TestRunMetaData setBody(ExtensionContext context) {
-    project = PROJECT;
-
     runTime = RUN_TIME;
     runName = RUN_NAME;
+    triggeredBy = TRIGGERED_BY;
 
     testClass = context.getTestClass().orElseThrow().getSimpleName();
     testName = context.getDisplayName();
@@ -67,8 +69,6 @@ public class TestRunMetaData {
     setDuration();
 
     setTestStatusAndReason(context);
-
-    triggeredBy = TRIGGERED_BY;
 
     return this;
   }
@@ -80,6 +80,7 @@ public class TestRunMetaData {
       duration = String.valueOf(TimingExtension.getTestExecutionTimeThread());
     }
 
+    TimingExtension.removeTestExecutionTimeThread();
     log.info("duration {}", duration);
   }
 
@@ -99,14 +100,6 @@ public class TestRunMetaData {
       return System.getProperty("user.name");
     } else {
       return CONFIG.getString("TRIGGERED_BY");
-    }
-  }
-
-  private static String getRunName() {
-    if (CONFIG.getString("RUN_NAME").isEmpty()) {
-      return new Faker().funnyName().name();
-    } else {
-      return CONFIG.getString("RUN_NAME");
     }
   }
 }

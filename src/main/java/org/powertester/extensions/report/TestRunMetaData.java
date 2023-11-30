@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.typesafe.config.Config;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,6 +52,9 @@ public class TestRunMetaData {
   @JsonProperty("test-name")
   private String testName;
 
+  @JsonProperty("test-type")
+  private String testType;
+
   private String status;
 
   private String reason;
@@ -65,6 +69,8 @@ public class TestRunMetaData {
 
     testClass = context.getTestClass().orElseThrow().getSimpleName();
     testName = context.getDisplayName();
+
+    setTestType(context);
 
     setDuration();
 
@@ -101,5 +107,25 @@ public class TestRunMetaData {
     } else {
       return CONFIG.getString("TRIGGERED_BY");
     }
+  }
+
+  // Set test-type based on annotation at the class level
+  private void setTestType(ExtensionContext context) {
+    testType =
+        context
+            .getTestClass()
+            .flatMap(
+                clazz ->
+                    Arrays.stream(clazz.getAnnotations())
+                        .filter(
+                            annotation ->
+                                annotation.annotationType().getSimpleName().contains("Test")
+                                    || annotation
+                                        .annotationType()
+                                        .getSimpleName()
+                                        .contains("Check"))
+                        .map(annotation -> annotation.annotationType().getSimpleName())
+                        .findFirst())
+            .orElse("undefined");
   }
 }

@@ -13,10 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.powertester.annotations.FailingTest;
 import org.powertester.booking.Booking;
 import org.powertester.booking.BookingAPI;
-import setup.TestSetup;
 
 @Slf4j
-public class BookingTests extends TestSetup {
+public class BookingTests {
   public static final String READ_UPDATE_BOOKING_SCHEMA_FILE_PATH =
       "schemas/read-update-booking-schema.json";
   public static final String CREATE_BOOKING_SCHEMA_FILE_PATH = "schemas/create-booking-schema.json";

@@ -15,7 +15,7 @@
         <maven.compiler.plugin>3.10.1</maven.compiler.plugin>
         <maven.surefire.plugin>3.0.0-M5</maven.surefire.plugin>
         <maven.site.plugin>3.11.0</maven.site.plugin>
-        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <junit.jupiter.version>5.10.1</junit.jupiter.version>
         <lombok.version>1.18.30</lombok.version>
         <typesafe.version>1.4.2</typesafe.version>
         <elasticsearch-java.version>8.6.1</elasticsearch-java.version>

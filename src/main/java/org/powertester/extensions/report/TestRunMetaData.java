@@ -2,7 +2,6 @@ package org.powertester.extensions.report;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.javafaker.Faker;
 import com.typesafe.config.Config;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -10,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.powertester.config.TestConfig;
 import org.powertester.extensions.TimingExtension;
@@ -104,7 +104,7 @@ public class TestRunMetaData {
 
   private static String getRunName() {
     if (CONFIG.getString("RUN_NAME").isEmpty()) {
-      return Faker.instance().funnyName().name();
+      return new Faker().funnyName().name();
     } else {
       return CONFIG.getString("RUN_NAME");
     }

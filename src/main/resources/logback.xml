@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>[%-5level] %d{HH:mm:ss.SSS} %15.15t [%logger{0}] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- For controlling logging at package level-->
+    <logger name="org.hibernate.SQL" level="INFO" />
+
+    <!-- For Publishing logs of a specific class using another custom appender (other than STDOUT). Of-course Custom appender needs to exist-->
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" >
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="ElasticExtension" level="INFO" >
+        <appender-ref ref="KAFKA_ELASTIC_APPENDER" />
+    </logger>
+</configuration>

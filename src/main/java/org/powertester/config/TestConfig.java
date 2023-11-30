@@ -3,6 +3,7 @@ package org.powertester.config;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,28 +47,26 @@ public class TestConfig {
 
     config = getAllConfigFromFilesInTheResourcePath("common");
 
-    TestEnv testEnv = config.getEnum(TestEnv.class, "TEST_ENV");
+    TestEnv testEnv = TestEnv.getEnumByValue(config.getString("TEST_ENV"));
     return getAllConfigFromFilesInTheResourcePath(testEnv.getValue());
   }
 
   private Config getAllConfigFromFilesInTheResourcePath(String resourceBasePath) {
     try {
-      String path = String.format("src/main/resources/%s", resourceBasePath);
-      log.info("path: {}", path);
+      for (File file :
+          Objects.requireNonNull(
+              Paths.get("src/main/resources/" + resourceBasePath).toFile().listFiles())) {
+        log.info("file path: {}", file);
 
-      File testEnvDir = new File(path);
-      for (File file : Objects.requireNonNull(testEnvDir.listFiles())) {
-        String resourceFileBasePath = String.format("%s/%s", resourceBasePath, file.getName());
-        log.info("resourceFileBasePath: {}", resourceFileBasePath);
-
-        Config childConfig = ConfigFactory.load(resourceFileBasePath);
+        Config childConfig =
+            ConfigFactory.load(String.format("%s/%s", resourceBasePath, file.getName()));
         config = config.withFallback(childConfig);
       }
 
       return config;
     } catch (Exception exception) {
       exception.printStackTrace();
-      throw new IllegalStateException("Could not parse config");
+      throw new IllegalStateException("Could not parse config. Got issues in parsing File path.");
     }
   }
 }

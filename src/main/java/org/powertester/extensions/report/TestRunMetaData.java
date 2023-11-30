@@ -70,24 +70,27 @@ public class TestRunMetaData {
     testClass = context.getTestClass().orElseThrow().getSimpleName();
     testName = context.getDisplayName();
 
-    setTestType(context);
+    testType = getTestType(context);
 
-    setDuration();
+    duration = getTestDuration();
 
     setTestStatusAndReason(context);
 
     return this;
   }
 
-  private void setDuration() {
+  private String getTestDuration() {
+    String testDuration;
     if (TimingExtension.getTestExecutionTimeThread() >= 5) {
-      duration = TimingExtension.getTestExecutionTimeThread() + " ⏰";
+      testDuration = TimingExtension.getTestExecutionTimeThread() + " ⏰";
     } else {
-      duration = String.valueOf(TimingExtension.getTestExecutionTimeThread());
+      testDuration = String.valueOf(TimingExtension.getTestExecutionTimeThread());
     }
 
     TimingExtension.removeTestExecutionTimeThread();
-    log.info("duration {}", duration);
+    log.info("testDuration {}", testDuration);
+
+    return testDuration;
   }
 
   private void setTestStatusAndReason(ExtensionContext context) {
@@ -110,22 +113,18 @@ public class TestRunMetaData {
   }
 
   // Set test-type based on annotation at the class level
-  private void setTestType(ExtensionContext context) {
-    testType =
-        context
-            .getTestClass()
-            .flatMap(
-                clazz ->
-                    Arrays.stream(clazz.getAnnotations())
-                        .filter(
-                            annotation ->
-                                annotation.annotationType().getSimpleName().contains("Test")
-                                    || annotation
-                                        .annotationType()
-                                        .getSimpleName()
-                                        .contains("Check"))
-                        .map(annotation -> annotation.annotationType().getSimpleName())
-                        .findFirst())
-            .orElse("undefined");
+  private String getTestType(ExtensionContext context) {
+    return context
+        .getTestClass()
+        .flatMap(
+            clazz ->
+                Arrays.stream(clazz.getAnnotations())
+                    .filter(
+                        annotation ->
+                            annotation.annotationType().getSimpleName().contains("Test")
+                                || annotation.annotationType().getSimpleName().contains("Check"))
+                    .map(annotation -> annotation.annotationType().getSimpleName())
+                    .findFirst())
+        .orElse("undefined");
   }
 }

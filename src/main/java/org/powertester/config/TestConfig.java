@@ -63,7 +63,7 @@ public class TestConfig {
       return config;
     } catch (Exception exception) {
       exception.printStackTrace();
-      throw new IllegalStateException("Could not parse config");
+      throw new IllegalStateException("Could not parse config. Got issues in parsing File path.");
     }
   }
 }

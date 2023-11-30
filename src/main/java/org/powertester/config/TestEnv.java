@@ -14,4 +14,14 @@ public enum TestEnv {
   public String getValue() {
     return value;
   }
+
+  public static TestEnv getEnumByValue(String value) {
+    for(TestEnv testEnv: TestEnv.values()){
+      if(testEnv.getValue().equalsIgnoreCase(value)){
+        return testEnv;
+      }
+    }
+
+    throw new IllegalStateException("No enum constant with value: " + value);
+  }
 }

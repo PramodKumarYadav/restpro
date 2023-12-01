@@ -118,19 +118,6 @@ public class DBConnection {
     return resultList;
   }
 
-  // Preferred option 2: Execute a query and return the resultSet data as a list of map of column
-  // name and value
-  public List<Map<String, String>> executeQuery(String sql) {
-    try (Connection connection = getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(sql)) {
-
-      return getResultListFromResultSet(resultSet);
-    } catch (Exception e) {
-      throw new IllegalStateException("Error executing query" + sql, e);
-    }
-  }
-
   // Run stored procedure with parameters
   public Map<String, String> runStoredProcedure(String sql, String... outputParameters) {
     try (Connection connection = getConnection();

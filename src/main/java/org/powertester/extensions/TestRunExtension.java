@@ -6,8 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Locale;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -16,19 +15,17 @@ import org.powertester.database.DBConnection;
 @Slf4j
 public class TestRunExtension
     implements BeforeAllCallback, ExtensionContext.Store.CloseableResource {
-  private static final Lock LOCK = new ReentrantLock();
 
-  private static volatile boolean started = false;
+  private final AtomicBoolean runExecuted = new AtomicBoolean(false);
   private static final Path TEST_REPORT_PATH =
       Paths.get(".", "test-reports", getDateAsString("yyyy-MM-dd/HH-mm"));
   private long testRunStartTime;
 
   @Override
-  public void beforeAll(final ExtensionContext extensionContext) throws Exception {
-    LOCK.lock();
+  public void beforeAll(final ExtensionContext extensionContext) {
     try {
-      if (!started) {
-        started = true;
+      // Execute the method logic only if it hasn't been executed before
+      if (!runExecuted.get() && runExecuted.compareAndSet(false, true)) {
         log.info("Test run started.");
 
         testRunStartTime = System.currentTimeMillis();
@@ -47,13 +44,15 @@ public class TestRunExtension
             .getStore(ExtensionContext.Namespace.GLOBAL)
             .put("TestRunExtension", this);
       }
-    } finally {
-      LOCK.unlock();
+    } catch (Exception e) {
+      log.error("Error initializing TestRunExtension", e);
+      log.error("⚠ Cancelling test run since tests depend on TestRunExtension");
+      System.exit(1);
     }
   }
 
   @Override
-  public void close() throws Throwable {
+  public void close() {
     DBConnection.getInstance().closeConnectionPool();
 
     log.info(

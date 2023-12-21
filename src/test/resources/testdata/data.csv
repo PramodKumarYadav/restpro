@@ -1,0 +1,4 @@
+testName, userId, Access
+Guest User, Guest, Read Only
+Admin User, Admin, Create/Read/Update/Delete
+Maintenance User, Maintainer, Read/Update

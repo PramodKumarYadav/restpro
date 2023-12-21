@@ -24,7 +24,7 @@ public class TimingExtension implements BeforeTestExecutionCallback, AfterTestEx
   @Override
   public void afterTestExecution(ExtensionContext context) {
     double duration = (System.currentTimeMillis() - startTimeMethod) / 1000.0;
-    log.info("Test [{}] took {} seconds.", context.getRequiredTestMethod().getName(), duration);
+    log.info("Test took {} seconds.", duration);
 
     // Now set this variable as a thread local so that it can be used for reporting total execution
     // time.

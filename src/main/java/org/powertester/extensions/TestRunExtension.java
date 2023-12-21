@@ -51,7 +51,7 @@ public class TestRunExtension
       log.error("⚠ Cancelling test run since tests depend on TestRunExtension");
       System.exit(1);
     } finally {
-        MDC.clear();
+      MDC.clear();
     }
   }
 

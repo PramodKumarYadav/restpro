@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.powertester.database.DBConnection;
+import org.slf4j.MDC;
 
 @Slf4j
 public class TestRunExtension
@@ -26,6 +27,7 @@ public class TestRunExtension
     try {
       // Execute the method logic only if it hasn't been executed before
       if (!runExecuted.get() && runExecuted.compareAndSet(false, true)) {
+        MDC.put("testContext", "Onetime TestRun Setup");
         log.info("Test run started.");
 
         testRunStartTime = System.currentTimeMillis();
@@ -48,15 +50,19 @@ public class TestRunExtension
       log.error("Error initializing TestRunExtension", e);
       log.error("⚠ Cancelling test run since tests depend on TestRunExtension");
       System.exit(1);
+    } finally {
+      MDC.clear();
     }
   }
 
   @Override
   public void close() {
+    MDC.put("testContext", "TestRun Completed");
     DBConnection.getInstance().closeConnectionPool();
 
     log.info(
         "Test run completed in {} seconds.",
         (System.currentTimeMillis() - testRunStartTime) / 1000.0);
+    MDC.clear();
   }
 }

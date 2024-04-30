@@ -10,9 +10,10 @@ Test RestAPIS like a PRO.
 ![languages](https://img.shields.io/github/languages/count/pramodkumaryadav/restpro)
 ![info](https://img.shields.io/static/v1?label=with-love-from&message=power-tester&color=blue?style=plastic&logo=appveyor)
 
-> NOTE: If you see errors while running the project, make sure that you have
-> completed the getting started steps from below section (especially decrypting
-> encrypted config files using `git-crypt`.
+> NOTE: 
+> 1. I found that a few users who tried to use this project struggled to use git-crypt properly to decrypt encrypted secrets and thus were not able to move forward with rest of learnings too. 
+> 2. To make the entry barrier minimum for new users, I am removing encryption from [secrets.conf](src/main/resources/develop/secrets.conf) files and storing them as plain text for training purpose. 
+> 3. That said, in a real project you should use the instructions mentioned here in this readme file [**git-crypt**](docs/README-GIT-CRYPT.md) to encrypt/decrypt secrets and MUST not store your secrets in plain text.
 
 ## Application under test
 
@@ -23,8 +24,7 @@ Test RestAPIS like a PRO.
 1. [**JDK 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) - as language of choice
    for writing this test framework.
 2. [**Maven 3.8.6+**](https://maven.apache.org/) - for project dependency management and running tests in CI.
-3. [**git-crypt**](docs/README-GIT-CRYPT.md) - to encrypt/decrypt secret files.
-4. [**pre-commit**](docs/README-CODE-FORMATTING.md) - To have code automatically and uniformly formatted (JAVA, JSON,
+3. [**pre-commit**](docs/README-CODE-FORMATTING.md) - To have code automatically and uniformly formatted (JAVA, JSON,
    XML, YAML).
 
 ## 🚀 Core features

@@ -28,7 +28,7 @@ jobs:
       - name: List changed test files
         id: list_touched_files
         env:
-          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
         run: |
           tests="CSVUnitTests.java" # Default test file to run
           for file in ${ALL_CHANGED_FILES}; do

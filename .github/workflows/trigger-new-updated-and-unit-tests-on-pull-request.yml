@@ -35,7 +35,11 @@ jobs:
           for file in ${ALL_CHANGED_FILES}; do
             filename=$(basename "$file")
             echo "$filename was changed"
-            tests="$tests,$filename"
+            if [ -z "$tests" ]; then
+              tests="$filename"
+            else
+              tests="$tests,$filename"
+            fi  
           done
           echo "--grep input to send: $tests" 
           echo "test_files=$tests"  >> "$GITHUB_OUTPUT"

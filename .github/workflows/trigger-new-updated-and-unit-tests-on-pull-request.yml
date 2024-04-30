@@ -23,9 +23,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
         with:
-          # Avoid using single or double quotes for multiline patterns
-          files: |
-            src/test/**/*.{java}
+          files: src/test/**/*.{java}
 
       - name: List changed test files
         id: list_touched_files

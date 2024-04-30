@@ -24,7 +24,7 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           # Avoid using single or double quotes for multiline patterns
-          # files: src/test/**/*.{java} # Java files only.
+          files: src/test/**/*.{java} # Java files only.
 
       - name: List changed test files
         id: list_touched_files
@@ -45,7 +45,7 @@ jobs:
     uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
       tags-of-tests-to-include: "unit"
-      tags-of-tests-to-exclude: ""
       test-files-to-include: "${{needs.touched-test-files.outputs.test_files_to_run}}"
+      tags-of-tests-to-exclude: ""
       run-name: "${{ github.event.pull_request.title }}"
     secrets: inherit

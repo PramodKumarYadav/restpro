@@ -3,6 +3,11 @@ name: reusable-workflow-to-run-tests
 on:
   workflow_call:
     inputs:
+      test-environment:
+        required: false
+        type: string
+        default: "STAGING"
+
       tags-of-tests-to-include:
         required: true
         type: string
@@ -12,10 +17,10 @@ on:
         type: string
         default: "flaky, failing"
 
-      test-environment:
+      test-files-to-include:
         required: false
         type: string
-        default: "STAGING"
+        default: ""
 
       run-name:
         required: false
@@ -43,22 +48,13 @@ jobs:
       #   env:
       #     GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
 
-      - name: HealthCheck
-        run: >
-          mvn
-          -DexcludedGroups="${{ inputs.tags-of-tests-to-exclude }}"
-          -Dgroups="healthcheck"
-          -DTEST_ENV="${{ inputs.test-environment }}"
-          -DTRIGGERED_BY="${{ github.event_name }}"
-          -DRUN_NAME="${{ inputs.run-name }}"
-          -B package --file pom.xml
-
       - name: Test with Maven
         run: >
           mvn
-          -DexcludedGroups="${{ inputs.tags-of-tests-to-exclude }}"
-          -Dgroups="${{ inputs.tags-of-tests-to-include }}"
           -DTEST_ENV="${{ inputs.test-environment }}"
+          -Dgroups="${{ inputs.tags-of-tests-to-include }}"
+          -Dtest="${{ inputs.test-files-to-include }}"
+          -DexcludedGroups="${{ inputs.tags-of-tests-to-exclude }}"
           -DTRIGGERED_BY="${{ github.event_name }}"
           -DRUN_NAME="${{ inputs.run-name }}"
           -B package --file pom.xml

@@ -29,9 +29,13 @@ on:
 
 jobs:
   run-tests:
-
+    timeout-minutes: 15
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        # Give same names for runners.
+        runner: ["first", "second", "third"]
     steps:
       - uses: actions/checkout@v3
 
@@ -50,7 +54,7 @@ jobs:
 
       - name: Test with Maven
         run: >
-          mvn
+          mvn -Dsurefire.forkCount=${{ strategy.job-total }} -DargLine="-Xmx1024m"
           -DTEST_ENV="${{ inputs.test-environment }}"
           -Dgroups="${{ inputs.tags-of-tests-to-include }}"
           -Dtest="${{ inputs.test-files-to-include }}"

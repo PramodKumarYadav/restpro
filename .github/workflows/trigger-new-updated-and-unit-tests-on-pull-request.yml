@@ -48,7 +48,7 @@ jobs:
     needs: touched-test-files
     uses: ./.github/workflows/reusable-workflow-to-run-tests.yml
     with:
-      tags-of-tests-to-include: "unit"
+      tags-of-tests-to-include: ""
       test-files-to-include: "${{needs.touched-test-files.outputs.test_files_to_run}}"
       tags-of-tests-to-exclude: ""
       run-name: "${{ github.event.pull_request.title }}"
